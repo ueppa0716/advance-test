@@ -1,0 +1,195 @@
+html,
+body {
+    height: 100%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+h1 {
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ヘッダー */
+.header {
+    display: grid;
+    align-items: center;
+    height: 100px;
+    text-align: center;
+    font-size: 18px;
+    background-color: rgb(238, 238, 238);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.header__heading {
+    font-weight: bold;
+    font-size: 30px;
+    color: rgb(48, 93, 255);
+    grid-column: 1;
+}
+
+.header__link-nav {
+    margin: 0 auto;
+    color: black;
+    grid-column: 5;
+}
+
+.header__link-ul {
+    display: flex;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-link-a {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+/* .header-link-a::last-of-child {
+    margin-right: 50px;
+} */
+
+/* フッター */
+.footer {
+    text-align: center;
+    vertical-align: middle;
+    height: 60px;
+    font-size: 14px;
+    background: #FFF;
+}
+
+/* コンテンツ */
+.content {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    background-color: rgb(238, 238, 238);
+}
+
+.content__heading {
+    margin: 50px 0 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    font-family: serif;
+}
+
+/* ボタン */
+button {
+    background: #FFF;
+    border: none;
+    font-family: serif;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 0px;
+}
+
+/* ページネーション */
+.page_top {
+    background-color: rgb(242, 242, 242);
+    padding-top: 40px;
+}
+
+.page_txt {
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.page_txt--deco {
+    border: 1px solid rgb(35, 132, 207);
+    color: rgb(35, 132, 207);
+    background-color: white;
+    padding: 0px 10px 0px 10px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.page_bottom {
+    background-color: rgb(242, 242, 242);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0px auto 70px;
+}
+
+.pagination li:not(.active) {
+    border: 1px solid #E0DFDE;
+    padding: 4px 12px;
+}
+
+.pagination li:not(:last-child) {
+    border-right: none;
+}
+
+.pagination a {
+    color: rgb(35, 132, 207);
+    text-decoration: none;
+}
+
+.pagination__link {
+    text-decoration: none;
+}
+
+.active {
+    padding: 4px 12px;
+    border: 1px solid rgb(242, 242, 242);
+    background-color: rgb(35, 132, 207);
+    color: white;
+}
+
+li {
+    background-color: white
+}
+
+.menu {
+    height: 100px;
+}
+
+.menu_btn {
+    display: inline-block;
+    font-size: 18px;
+    margin: 30px 0 0 30px;
+    padding: 5px 15px 5px 15px;
+    background-color: rgb(48, 93, 255);
+    color: white;
+    border-radius: 8px;
+}
+
+.menu_group {
+    display: flex;
+    justify-content: center;
+    color: rgb(48, 93, 255);
+}
+
+.menu__link-nav {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.menu__link-li {
+    font-size: 20px;
+    padding-bottom: 20px;
+    color: rgb(48, 93, 255)
+}
+
+.menu__link-text {
+    color: rgb(48, 93, 255);
+}
+
+.menu__btn-text {
+    color: white;
+}
