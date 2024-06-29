@@ -7,7 +7,7 @@
     width: 30vw;
     height: 280px;
     border-radius: 8px;
-    box-shadow: 2px 2px 0.5px gray;
+    box-shadow: 2px 2px 1px gray;
 }
 
 .register-form__heading {

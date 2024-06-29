@@ -13,12 +13,8 @@
 <body>
     <div class="app">
         <header class="header">
-            <h1><a class="header__heading" href="/menu">Rese</a></h1>
-            <nav class="header__link-nav">
-                <ul class="header__link-ul">
-                    @yield('header')
-                </ul>
-            </nav>
+            <h1><a class="header__heading" href="/menu"><span class="header__logo"></span>Rese</a></h1>
+            @yield('header')
         </header>
 
         <div class="content">
