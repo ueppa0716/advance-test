@@ -14,7 +14,7 @@ select {
     background-color: white;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
-    width: 70%;
+    width: 75%;
     height: 45px;
     padding: 10px;
 }
@@ -34,7 +34,7 @@ select {
 .search__form__category::after {
     position: absolute;
     top: 60%;
-    right: 5%;
+    right: -5%;
     width: 0;
     height: 0;
     border-top: 12px solid #BEB1A6;

@@ -36,10 +36,37 @@ class HomeController extends Controller
         return view('mypage', compact('user'));
     }
 
-    public function shop()
+    public function shop(Request $request)
     {
-        $shopInfos = Shop::all();
+        $query = Shop::query();
+        $locations = Shop::distinct()->get(['location']);
+        $categories = Shop::distinct()->get(['category']);
 
-        return view('shop', compact('shopInfos'));
+        $query = $this->getSearchQuery($request, $query);
+
+        $shopInfos = $query->get();
+
+        return view('shop', compact('shopInfos', 'locations', 'categories'));
+    }
+
+    private function getSearchQuery($request, $query)
+    {
+        if (!empty($request->keyword)) {
+            $query->where(function ($q) use ($request) {
+                $q->where('location', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('category', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('name', 'like', '%' . $request->keyword . '%');
+            });
+        }
+
+        if (!empty($request->location) && $request->location != 'All areas') {
+            $query->where('location', '=', $request->location);
+        }
+
+        if (!empty($request->category) && $request->category != 'All genres') {
+            $query->where('category', '=', $request->category);
+        }
+
+        return $query;
     }
 }
