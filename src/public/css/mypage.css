@@ -3,3 +3,182 @@
     font-weight: bold;
     text-align: center;
 }
+
+.mypage__group {
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+
+/* reserve */
+.mypage__reserve-heading {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mypage__reserve {
+    width: 40%;
+}
+
+.mypage__reserve__shop {
+    width: 100%;
+    border-radius: 8px;
+    background-color: rgb(33, 75, 224);
+    color: white;
+    font-size: 15px;
+    border: none;
+    padding: 35px;
+    margin-bottom: 30px;
+}
+
+.mypage__reserve__shop-heading {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.mypage__reserve-title {
+    margin: 0;
+}
+
+.mypage__cancel-btn {
+    background-color: rgb(33, 75, 224);
+    color: white;
+    border: 1px solid white;
+    padding: 1px 6px;
+    font-size: 15px;
+}
+
+.mypage__reserve-table {
+    font-size: 18px;
+}
+
+.mypage__reserve-row {
+    display: flex;
+    margin-top: 25px;
+}
+
+.mypage__reserve-label {
+    margin-right: 70px;
+}
+
+.mypage__reserve-row:last-of-type .mypage__reserve-label {
+    margin-right: 50px;
+}
+
+/* like */
+.mypage__like {
+    width: 50%;
+}
+
+.mypage__like-heading {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mypage__like__group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mypage__like__shop {
+    width: 40%;
+    height: fit-content;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px gray;
+    margin: 0 15px 30px 0;
+}
+
+.mypage__like__content {
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.mypage__like__content-text {
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0;
+}
+
+.mypage__like__content-detail {
+    display: flex;
+    text-decoration: none;
+    padding: 0;
+    margin: 7px 0 7px 0;
+}
+
+.mypage__like__content-tag {
+    padding: 0 10px 0 0;
+}
+
+.mypage__like__img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.mypage__like__group-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mypage__like__group-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail__btn {
+    width: 100%;
+    border-radius: 8px;
+    background-color: rgb(33, 75, 224);
+    color: white;
+    height: 100%;
+    font-size: 15px;
+    border: none;
+    padding: 5px 15px;
+}
+
+.like__btn {
+    width: 20%;
+    background-color: white;
+    height: 35px;
+    font-size: 13px;
+    border: none;
+    content: '♡';
+}
+
+.like__logo-red {
+    width: 60px;
+    height: 60px;
+    left: -40px;
+    position: relative;
+}
+
+.like__logo-red::before,
+.like__logo-red::after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    width: 20px;
+    height: 35px;
+    background: red;
+    border-radius: 100px 100px 0 0;
+
+}
+
+.like__logo-red::before {
+    left: 20px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.like__logo-red::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}

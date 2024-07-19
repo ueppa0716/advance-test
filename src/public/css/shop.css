@@ -79,11 +79,14 @@ select {
     padding: 0 6%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: left;
+    margin-bottom: 50px;
+    width: 100%;
 }
 
 .shop__group {
     width: 23.5%;
-    height: 19%;
+    height: fit-content;
     background-color: white;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
@@ -92,6 +95,8 @@ select {
 
 .shop__content {
     padding: 15px;
+    background-color: white;
+    border-radius: 8px;
 }
 
 .shop__content-text {
@@ -104,6 +109,7 @@ select {
     display: flex;
     text-decoration: none;
     padding: 0;
+    margin: 7px 0 7px 0;
 }
 
 .shop__content-tag {
@@ -115,20 +121,25 @@ select {
     border-radius: 8px 8px 0 0;
 }
 
+.shop__group-form {
+    display: flex;
+    justify-content: space-between;
+}
+
 .shop__group-btn {
     display: flex;
     justify-content: space-between;
 }
 
 .detail__btn {
-    width: 35%;
+    width: 100%;
     border-radius: 8px;
     background-color: rgb(33, 75, 224);
     color: white;
-    height: 35px;
-    font-size: 13px;
+    height: 100%;
+    font-size: 15px;
     border: none;
-    padding: 8px;
+    padding: 5px 15px;
 }
 
 .like__btn {
@@ -143,7 +154,7 @@ select {
 .like__logo {
     width: 60px;
     height: 60px;
-    left: -20px;
+    left: -50px;
     position: relative;
 }
 
@@ -166,6 +177,37 @@ select {
 }
 
 .like__logo::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.like__logo-red {
+    width: 60px;
+    height: 60px;
+    left: -50px;
+    position: relative;
+}
+
+.like__logo-red::before,
+.like__logo-red::after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    width: 20px;
+    height: 35px;
+    background: red;
+    border-radius: 100px 100px 0 0;
+
+}
+
+.like__logo-red::before {
+    left: 20px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.like__logo-red::after {
     left: 0;
     transform: rotate(45deg);
     transform-origin: 100% 100%;

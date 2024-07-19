@@ -22,14 +22,18 @@ use App\Http\Controllers\MiddlewareController;
 // });
 
 Route::get('/', [HomeController::class, 'shop']);
+Route::post('/', [HomeController::class, 'shop']);
 Route::get('/menu', [HomeController::class, 'index']);
 Route::get('/thanks', [HomeController::class, 'thanks']);
+Route::get('/detail', [HomeController::class, 'detail']);
 
 Auth::routes(['verify' => true]);
 
 // 認証済みユーザーのためのルート
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [HomeController::class, 'mypage']);
+    Route::post('/mypage', [HomeController::class, 'mypage']);
+    Route::post('/done', [HomeController::class, 'done']);
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能
     });

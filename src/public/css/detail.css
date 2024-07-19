@@ -1,0 +1,116 @@
+.detail__group {
+    padding: 0 6%;
+    display: flex;
+    height: fit-content;
+}
+
+.detail__group-shop {
+    height: fit-content;
+}
+
+.detail__group-shop {
+    width: 50%;
+    margin-right: 100px;
+}
+
+.detail__shop-heading {
+    display: flex;
+    vertical-align: middle;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.detail__shop-btn {
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 1px gray;
+}
+
+.detail__shop-title {
+    margin: 0 0 0 10px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.detail__shop-content {
+    width: 100%;
+}
+
+.detail__shop-img {
+    width: 100%;
+}
+
+.detail__shop-detail {
+    display: flex;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.detail__shop-tag {
+    margin-right: 5px;
+    background-color: rgb(238, 238, 238);
+}
+
+.detail__group-reserve {
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px gray;
+    background-color: rgb(48, 93, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detail__reserve-content {
+    padding: 30px;
+}
+
+.detail__reserve-input {
+    width: 90%;
+    margin-bottom: 15px;
+    display: block;
+    font-size: 13px;
+}
+
+.detail__reserve-input::-webkit-outer-spin-button,
+.detail__reserve-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    /* Chrome, Safari, Edge */
+    margin: 0;
+}
+
+.detail__reserve-title {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 0 20px 0;
+}
+
+.detail__reserve-table {
+    background-color: rgb(77, 127, 255);
+    color: white;
+    text-align: left;
+    font-size: 13px;
+    font-weight: lighter;
+    padding: 20px;
+}
+
+.detail__reserve-row {
+    
+}
+
+.detail__reserve-label {
+    margin-right: 15px;
+}
+
+.detail__reserve-btn {
+    background-color: rgb(33, 75, 224);
+    border: none;
+    color: white;
+    width: 100%;
+    height: 10%;
+    border-radius: 8px;
+}
