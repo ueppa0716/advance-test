@@ -5,7 +5,7 @@
 }
 
 .mypage__group {
-    padding: 0 8%;
+    padding: 0 5%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
@@ -40,6 +40,10 @@
     font-size: 20px;
 }
 
+.mypage__reserve__shop-text {
+    display: flex;
+}
+
 .mypage__reserve-title {
     margin: 0;
 }
@@ -69,9 +73,15 @@
     margin-right: 50px;
 }
 
+.img-clock {
+    width: 30px;
+    height: 30px;
+    margin: 0 30px 0 0;
+}
+
 /* like */
 .mypage__like {
-    width: 50%;
+    width: 53%;
 }
 
 .mypage__like-heading {
@@ -86,7 +96,7 @@
 }
 
 .mypage__like__shop {
-    width: 40%;
+    width: 45%;
     height: fit-content;
     background-color: white;
     border-radius: 8px;

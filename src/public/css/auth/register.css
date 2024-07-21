@@ -21,7 +21,7 @@
 
 .register-form__inner {
     display: block;
-    padding: 20px 20px 20px 50px;
+    padding: 25px;
 }
 
 .register-form__form {
@@ -36,6 +36,7 @@
 
 .register-form__group {
     margin-bottom: 15px;
+    display: flex;
 }
 
 .register-form__label {
@@ -80,4 +81,22 @@
 
 .register-form__nav-link {
     color: rgb(33, 75, 224);
+}
+
+.img-user {
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px 0 0;
+}
+
+.img-mail {
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px 0 0;
+}
+
+.img-lock {
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px 0 0;
 }

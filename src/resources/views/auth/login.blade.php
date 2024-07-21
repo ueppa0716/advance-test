@@ -11,10 +11,14 @@
             <form class="login-form__form" action="/login" method="post">
                 @csrf
                 <div class="login-form__group">
+                    <img class="img-mail" src="https://img.icons8.com/?size=100&id=85500&format=png&color=555555"
+                        alt="メール">
                     <input class="login-form__input" type="mail" name="email" id="email" placeholder="Email"
                         value="{{ old('email') }}" />
                 </div>
                 <div class="login-form__group">
+                    <img class="img-lock" src="https://img.icons8.com/?size=100&id=83187&format=png&color=555555"
+                        alt="ロック">
                     <input class="login-form__input" type="password" name="password" id="password" placeholder="Password">
                 </div>
                 <input class="login-form__btn btn" type="submit" value="ログイン">

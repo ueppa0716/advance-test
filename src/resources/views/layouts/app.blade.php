@@ -13,7 +13,30 @@
 <body>
     <div class="app">
         <header class="header">
-            <h1><a class="header__heading" href="/menu"><span class="header__logo"></span>Rese</a></h1>
+            <h1><a class="header__heading" href="#modal"><span class="header__logo"></span>Rese</a></h1>
+            <div class="menu_group" id='modal'>
+                <div class="menu__heading"><span class="menu_btn"><a class="menu__btn-text" href="#">x</a></span>
+                </div>
+                <nav class="menu__link-nav">
+                    <ul class="menu__link-ul">
+                        <li class="menu__link-li"><a class="menu__link-text" href="/">Home</a></li>
+                        @if (Auth::check())
+                            <li class="menu__link-li">
+                                <form class="" action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="menu__link-btn">Logout</button>
+                                </form>
+                            </li>
+                            <li class="menu__link-li"><a class="menu__link-text" href="/mypage">Mypage</a></li>
+                        @else
+                            <li class="menu__link-li"><a class="menu__link-text" href="/register">Registration</a>
+                            </li>
+                            <li class="menu__link-li"><a class="menu__link-text" href="/login">Login</a></li>
+                        @endif
+                    </ul>
+                </nav>
+            </div>
+
             @yield('header')
         </header>
 
