@@ -55,6 +55,17 @@ class HomeController extends Controller
             $this->detail($request);
         }
 
+        if ($request->has('update')) {
+            $reserveList = Reservation::where('user_id', $user->id)
+                ->where('shop_id', $request->shop_id)
+                ->first();
+            $reserveList->update([
+                'date' => $request->input('date') . ' ' . $request->input('time'),
+                'people' => $request->input('people'),
+            ]);
+            return redirect()->back()->with('message', '予約変更が完了しました');
+        }
+
         $reserveLists = Reservation::where('user_id', $user->id)
             ->with('shop.location', 'shop.category')
             ->get();

@@ -21,6 +21,12 @@ ul {
     list-style: none;
 }
 
+.message {
+    color: blue;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
 
 /* ヘッダー */
 .header {

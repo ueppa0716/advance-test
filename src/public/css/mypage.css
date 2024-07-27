@@ -1,3 +1,7 @@
+.mypage {
+    width: 100%;
+}
+
 .mypage__text {
     font-size: 25px;
     font-weight: bold;
@@ -56,6 +60,11 @@
     font-size: 15px;
 }
 
+.mypage__update-btn {
+    margin: 0 0 0 auto;
+    display: block;
+}
+
 .mypage__reserve-table {
     font-size: 18px;
 }
@@ -69,8 +78,17 @@
     margin-right: 70px;
 }
 
+.mypage__reserve-txt {
+    background-color: rgb(33, 75, 224);
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: fit-content;
+    max-width: 150px;
+}
+
 .mypage__reserve-row:last-of-type .mypage__reserve-label {
-    margin-right: 50px;
+    margin-right: 42px;
 }
 
 .img-clock {
