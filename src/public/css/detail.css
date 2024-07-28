@@ -76,13 +76,6 @@
     font-size: 13px;
 }
 
-.detail__reserve-input::-webkit-outer-spin-button,
-.detail__reserve-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    /* Chrome, Safari, Edge */
-    margin: 0;
-}
-
 .detail__reserve-title {
     color: white;
     font-weight: bold;
@@ -99,9 +92,7 @@
     padding: 20px;
 }
 
-.detail__reserve-row {
-    
-}
+.detail__reserve-row {}
 
 .detail__reserve-label {
     margin-right: 15px;

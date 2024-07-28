@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MiddlewareController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 /*
@@ -26,6 +27,7 @@ Route::post('/', [HomeController::class, 'shop']);
 Route::get('/menu', [HomeController::class, 'index']);
 Route::get('/thanks', [HomeController::class, 'thanks']);
 Route::get('/detail', [HomeController::class, 'detail']);
+Route::post('/register', [RegisterController::class, 'register']);
 
 Auth::routes(['verify' => true]);
 
