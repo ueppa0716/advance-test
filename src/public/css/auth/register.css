@@ -64,7 +64,7 @@
     background-color: rgb(33, 75, 224);
     color: white;
     height: 35px;
-    font-size: 13px;
+    font-size: 1.2vw;
     border: none;
     display: block;
     margin-left: auto;
@@ -99,4 +99,15 @@
     width: 30px;
     height: 30px;
     margin: 5px 5px 0 0;
+}
+
+@media (max-width: 768px) {
+    .register-form {
+        width: 70vw;
+    }
+
+    .register-form__btn {
+        width: 10vw;
+        font-size: 2.0vw;
+    }
 }
