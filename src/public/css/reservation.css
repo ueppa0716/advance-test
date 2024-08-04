@@ -1,0 +1,91 @@
+.content {
+    display: block;
+}
+
+.reserve__heading {
+    font-size: 2.0vw;
+    text-align: center;
+}
+
+/* テーブル */
+.reserve__table {
+    display: flex;
+    margin: 50px auto;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.reserve__row {
+    border-top: 1px solid #777;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reserve__label,
+.reserve__data {
+    padding: 25px 8px;
+}
+
+.reserve__label:first-of-type,
+.reserve__data:first-of-type {
+    padding-left: 48px;
+}
+
+.reserve__label:last-of-type,
+.reserve__data:last-of-type {
+    padding-right: 0px;
+}
+
+.reserve__label {
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+    gap: 24px;
+}
+
+.review__form-btn {
+    position: absolute;
+    font-size: 17px;
+    right: 30%;
+    border: 1px solid #E0DFDE;
+    color: #000;
+    background-color: #fff;
+}
+
+/* モーダルウィンドウ */
+.modal_group {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.63);
+    transition: visibility 0s, opacity 0.5s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_group:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__heading {
+    background: white;
+    padding: 1rem;
+    border-radius: 5px;
+    position: relative;
+}
+
+.modal__btn-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    cursor: pointer;
+}

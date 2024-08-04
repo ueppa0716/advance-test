@@ -24,7 +24,6 @@ use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', [HomeController::class, 'shop']);
 Route::post('/', [HomeController::class, 'shop']);
-Route::get('/menu', [HomeController::class, 'index']);
 Route::get('/thanks', [HomeController::class, 'thanks']);
 Route::get('/detail', [HomeController::class, 'detail']);
 Route::post('/register', [RegisterController::class, 'register']);
@@ -36,6 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [HomeController::class, 'mypage']);
     Route::post('/mypage', [HomeController::class, 'mypage']);
     Route::post('/done', [HomeController::class, 'done']);
+    Route::get('/reservation', [HomeController::class, 'reserve']);
+    Route::post('/reservation', [HomeController::class, 'review']);
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能
     });

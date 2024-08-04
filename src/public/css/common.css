@@ -23,8 +23,7 @@ ul {
 
 .message {
     color: blue;
-    font-size: 15px;
-    margin-left: 20px;
+    font-size: 1.5vw;
 }
 
 
@@ -81,9 +80,7 @@ ul {
     width: 20%;
 }
 
-@media (max-width: 768px) {
-
-}
+@media (max-width: 768px) {}
 
 /* フッター */
 .footer {

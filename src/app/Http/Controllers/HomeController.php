@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReserveRequest;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Reservation;
@@ -33,22 +34,28 @@ class HomeController extends Controller
         return view('thanks', compact('email', 'password'));
     }
 
-    public function mypage(Request $request)
+    public function mypage(ReserveRequest $request)
     {
         $user = Auth::user();
+        $now = Carbon::now();
 
         if ($request->has('cancel')) {
             $reserveList = Reservation::where('user_id', $user->id)
                 ->where('shop_id', $request->shop_id)
+                ->where('date', '>', $now)
                 ->first();
-            $reserveList->delete();
+            if ($reserveList) {
+                $reserveList->delete();
+            }
         }
 
         if ($request->has('like')) {
             $likeList = Like::where('user_id', $user->id)
                 ->where('shop_id', $request->shop_id)
                 ->first();
-            $likeList->delete();
+            if ($likeList) {
+                $likeList->delete();
+            }
         }
 
         if ($request->has('detail')) {
@@ -58,16 +65,20 @@ class HomeController extends Controller
         if ($request->has('update')) {
             $reserveList = Reservation::where('user_id', $user->id)
                 ->where('shop_id', $request->shop_id)
+                ->where('date', '>', $now)
                 ->first();
-            $reserveList->update([
-                'date' => $request->input('date') . ' ' . $request->input('time'),
-                'people' => $request->input('people'),
-            ]);
-            return redirect()->back()->with('message', '予約変更が完了しました');
+            if ($reserveList) {
+                $reserveList->update([
+                    'date' => $request->input('date') . ' ' . $request->input('time'),
+                    'people' => $request->input('people'),
+                ]);
+                return redirect()->back()->with('message', '予約変更が完了しました');
+            }
         }
 
         $reserveLists = Reservation::where('user_id', $user->id)
             ->with('shop.location', 'shop.category')
+            ->where('date', '>', $now)
             ->get();
 
         $likeLists = Like::where('user_id', $user->id)
@@ -79,7 +90,11 @@ class HomeController extends Controller
 
     public function shop(Request $request)
     {
-        $user = Auth::user();
+        if ($user = Auth::user()) {
+            if (is_null($user->email_verified_at)) {
+                return view('auth.verify');
+            }
+        }
 
         if ($request->has('like')) {
             if (empty($user)) {
@@ -152,7 +167,7 @@ class HomeController extends Controller
         return $query;
     }
 
-    public function detail(Request $request)
+    public function detail(ReserveRequest $request)
     {
         $user = Auth::user();
 
@@ -163,17 +178,37 @@ class HomeController extends Controller
         return view('detail', compact('shopInfo', 'now'));
     }
 
-    public function done(Request $request)
+    public function done(ReserveRequest $request)
     {
         $user = Auth::user();
+
+        $reserveDate = Carbon::createFromFormat('Y-m-d H:i', $request->date . ' ' . $request->time);
 
         Reservation::create([
             'user_id' => $user->id,
             'shop_id' => $request->shop_id,
-            'date' => Carbon::createFromFormat('Y-m-d H:i', $request->date . ' ' . $request->time),
+            'date' => $reserveDate,
             'people' => $request->people,
         ]);
 
         return view('done');
+    }
+
+    public function reserve(Request $request)
+    {
+        $user = Auth::user();
+        $now = Carbon::now();
+
+        $reserveLists = Reservation::where('user_id', $user->id)
+            ->with('shop.location', 'shop.category')
+            ->where('date', '<', $now)
+            ->paginate(5);
+
+        return view('reservation', compact('user', 'reserveLists'));
+    }
+
+    public function review(Request $request)
+    {
+        return view('reservation');
     }
 }

@@ -92,7 +92,12 @@
     padding: 20px;
 }
 
-.detail__reserve-row {}
+.detail__reserve__error-message {
+    display: flex;
+    color: red;
+    font-size: 13px;
+    align-items: center;
+}
 
 .detail__reserve-label {
     margin-right: 15px;

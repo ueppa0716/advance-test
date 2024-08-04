@@ -29,8 +29,12 @@
                     value="{{ $now->format('Y-m-d') }}">
                 <input class=" detail__reserve-input" type="time" name="time" id="time"
                     value="{{ date('H:i', strtotime($now)) }}">
-                <input class="detail__reserve-input" type="number" name="people" id="people" min="1"
-                    max="10" value="{{ old('people', 1) }}">
+                <select class="detail__reserve-input" name="people" id="people">
+                    @for ($i = 1; $i <= 10; $i++)
+                        <option value="{{ $i }}" {{ old('people', 1) == $i ? 'selected' : '' }}>
+                            {{ $i }}人</option>
+                    @endfor
+                </select>
                 <input type="hidden" name="shop_id" value="{{ $shopInfo->id }}">
                 <!-- 確認フィールド -->
                 <table class="detail__reserve-table">
@@ -51,6 +55,21 @@
                         <td class="detail__reserve-txt">{{ old('people') }}</td>
                     </tr>
                 </table>
+                <p class="detail__reserve__error-message">
+                    @error('date')
+                        {{ $message }}
+                    @enderror
+                </p>
+                <p class="detail__reserve__error-message">
+                    @error('time')
+                        {{ $message }}
+                    @enderror
+                </p>
+                <p class="detail__reserve__error-message">
+                    @error('people')
+                        {{ $message }}
+                    @enderror
+                </p>
             </div>
             <!-- 予約ボタン -->
             <input class="detail__reserve-btn" type="submit" value="予約する" name="reserve">

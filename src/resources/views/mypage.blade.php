@@ -10,13 +10,27 @@
         <p class="mypage__text">{{ $user->name }}さん</p>
         <div class="mypage__group">
             <div class="mypage__reserve">
-                <p class="mypage__reserve-heading">予約状況
-                    @if (session('message'))
-                        <span class="message">
-                            {{ session('message') }}
-                        </span>
-                    @endif
-                </p>
+                <div class="mypage__reserve-heading">
+                    <p class="mypage__reserve-heading-title">予約状況</p>
+                    <a class="mypage__reserve__link-text" href="/reservation">過去の予約履歴</a>
+                </div>
+                @if (session('message'))
+                    <span class="message">
+                        {{ session('message') }}
+                    </span>
+                @endif
+                @if ($errors->any())
+                    <p class="mypage__reserve__error-message">
+                        @error('date')
+                            {{ $message }}
+                        @enderror
+                    </p>
+                    <p class="mypage__reserve__error-message">
+                        @error('people')
+                            {{ $message }}
+                        @enderror
+                    </p>
+                @endif
 
                 @if (isset($reserveLists))
                     @foreach ($reserveLists as $reserveList)
@@ -58,8 +72,13 @@
                                     <tr class="mypage__reserve-row">
                                         <td class="mypage__reserve-label">Number</td>
                                         <td class="mypage__reserve-txt">
-                                            <input class="mypage__reserve-txt" type="number" name="people"
-                                                value="{{ $reserveList->people }}" min="1" max="10">
+                                            <select class="mypage__reserve-txt" name="people">
+                                                @for ($i = 1; $i <= 10; $i++)
+                                                    <option value="{{ $i }}"
+                                                        {{ $reserveList->people == $i ? 'selected' : '' }}>
+                                                        {{ $i }}人</option>
+                                                @endfor
+                                            </select>
                                         </td>
                                     </tr>
                                 </table>
@@ -81,9 +100,11 @@
                                 <div class="mypage__like__content">
                                     <p class="mypage__like__content-text">{{ $likeList->shop->name }}</p>
                                     <ul class="mypage__like__content-detail">
-                                        <li class="mypage__like__content-tag">#{{ $likeList->shop->location->location }}
+                                        <li class="mypage__like__content-tag">
+                                            #{{ $likeList->shop->location->location }}
                                         </li>
-                                        <li class="mypage__like__content-tag">#{{ $likeList->shop->category->category }}
+                                        <li class="mypage__like__content-tag">
+                                            #{{ $likeList->shop->category->category }}
                                         </li>
                                     </ul>
                                     <div class="mypage__like__group-form">
