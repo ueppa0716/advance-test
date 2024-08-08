@@ -27,4 +27,11 @@ class Shop extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function averageRating()
+    {
+        return $this->hasMany(Reservation::class, 'shop_id')
+            ->selectRaw('shop_id, AVG(point) as average_rating')
+            ->groupBy('shop_id');
+    }
 }

@@ -14,6 +14,8 @@ class Reservation extends Model
         'shop_id',
         'date',
         'people',
+        'point',
+        'comment',
     ];
 
     protected $casts = [

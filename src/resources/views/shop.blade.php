@@ -44,6 +44,9 @@
                 <li class="shop__content-tag">#{{ $shopInfo->location->location }}</li>
                 <li class="shop__content-tag">#{{ $shopInfo->category->category }}</li>
             </ul>
+            <ul class="shop__content-detail">
+                <li class="shop__content-tag">店舗評価点：{{ number_format($shopInfo->average_rating, 2) }}</li>
+            </ul>
             <div class="shop__group-form">
                 <form class="shop__group-btn" action="/detail" method="get">
                     @csrf

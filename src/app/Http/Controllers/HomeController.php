@@ -81,9 +81,19 @@ class HomeController extends Controller
             ->where('date', '>', $now)
             ->get();
 
+        // サブクエリでショップの評価点の平均を計算
+        $shopRatings = Reservation::select('shop_id', DB::raw('AVG(point) as average_rating'))
+            ->groupBy('shop_id')
+            ->pluck('average_rating', 'shop_id');
+
         $likeLists = Like::where('user_id', $user->id)
             ->with('shop.location', 'shop.category')
-            ->get();
+            ->get()
+            ->map(function ($like) use ($shopRatings) {
+                // 平均評価点を設定する
+                $like->shop->average_rating = $shopRatings->get($like->shop_id, 0);
+                return $like;
+            });
 
         return view('mypage', compact('user', 'reserveLists', 'likeLists'));
     }
@@ -123,21 +133,21 @@ class HomeController extends Controller
 
         $shopInfos = $query->with(['location', 'category'])->get();
 
+        // 店舗ごとの評価点の平均を計算
+        $shopRatings = Reservation::select('shop_id', DB::raw('AVG(point) as average_rating'))
+            ->groupBy('shop_id')
+            ->pluck('average_rating', 'shop_id');
+
         $userLikes = collect();
 
         if (!empty($user)) {
             $userLikes = Like::where('user_id', $user->id)->get();
         }
 
-        if (!empty($user)) {
-            $shopInfos->each(function ($shopInfo) use ($userLikes) {
-                $shopInfo->liked = $userLikes->contains('shop_id', $shopInfo->id);
-            });
-        } else {
-            $shopInfos->each(function ($shopInfo) {
-                $shopInfo->liked = false;
-            });
-        }
+        $shopInfos->each(function ($shopInfo) use ($userLikes, $shopRatings) {
+            $shopInfo->liked = $userLikes->contains('shop_id', $shopInfo->id);
+            $shopInfo->average_rating = $shopRatings->get($shopInfo->id, 0); // 評価点の平均を設定、デフォルトは0
+        });
 
         return view('shop', compact('shopInfos', 'locations', 'categories'));
     }
@@ -170,10 +180,16 @@ class HomeController extends Controller
     public function detail(ReserveRequest $request)
     {
         $user = Auth::user();
-
         $now = Carbon::now();
 
         $shopInfo = Shop::find($request->shop_id);
+
+        // 店舗ごとの評価点の平均を計算
+        $shopRating = Reservation::where('shop_id', $request->shop_id)
+            ->avg('point');
+
+        // 評価点の平均を`shopInfo`に追加
+        $shopInfo->average_rating = $shopRating;
 
         return view('detail', compact('shopInfo', 'now'));
     }
@@ -209,6 +225,25 @@ class HomeController extends Controller
 
     public function review(Request $request)
     {
-        return view('reservation');
+        $user = Auth::user();
+
+        if ($request) {
+            $reserveList = Reservation::where('user_id', $user->id)
+                ->where('shop_id', $request->shop_id)
+                ->first();
+            if (!empty($reserveList->point)) {
+                $reserveList->update([
+                    'point' => $request->point,
+                    'comment' => $request->comment,
+                ]);
+                return redirect()->back()->with('message', 'レビューを更新しました');
+            } else {
+                $reserveList->update([
+                    'point' => $request->point,
+                    'comment' => $request->comment,
+                ]);
+                return redirect()->back()->with('message', 'レビューありがとうございます。');
+            }
+        }
     }
 }

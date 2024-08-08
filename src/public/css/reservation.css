@@ -17,23 +17,16 @@
 
 .reserve__row {
     border-top: 1px solid #777;
-    width: 100%;
+    width: 90vw;
     display: flex;
     justify-content: space-between;
 }
 
-.reserve__label,
-.reserve__data {
-    padding: 25px 8px;
-}
-
-.reserve__label:first-of-type,
-.reserve__data:first-of-type {
+.reserve__label:first-of-type {
     padding-left: 48px;
 }
 
-.reserve__label:last-of-type,
-.reserve__data:last-of-type {
+.reserve__label:last-of-type {
     padding-right: 0px;
 }
 
@@ -43,6 +36,8 @@
     font-weight: bold;
     width: 100%;
     gap: 24px;
+    padding: 20px 8px;
+    align-self: center;
 }
 
 .review__form-btn {
@@ -63,7 +58,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.63);
+    background: rgba(255, 255, 255, 0.89);
     transition: visibility 0s, opacity 0.5s linear;
     display: flex;
     justify-content: center;
@@ -76,16 +71,60 @@
 }
 
 .modal__heading {
-    background: white;
-    padding: 1rem;
+    background-color: rgb(33, 75, 224);
+    padding: 5px 5px 5px 12px;
     border-radius: 5px;
     position: relative;
+    width: 35px;
+    height: 35px;
+    margin-bottom: 25px;
 }
 
 .modal__btn-text {
     position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1rem;
+    top: 5;
     cursor: pointer;
+    color: white;
+}
+
+.review__form {
+    width: 40%;
+}
+
+.review__form-name {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 2.0vw;
+}
+
+.review__form-text {
+    display: inline-block;
+    margin-bottom: 25px;
+    font-size: 2.0vw;
+}
+
+.review__form-point {
+    margin-left: 30px;
+    font-size: 1.5vw;
+}
+
+.review__form-btn {
+    margin-left: auto;
+}
+
+.review__form-comment-area {
+    font-size: 1.5vw;
+    width: 100%;
+}
+
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+}
+
+.message {
+    color: blue;
 }
