@@ -1,0 +1,50 @@
+.content {
+    display: block;
+}
+
+.review__heading {
+    font-size: 2.0vw;
+    text-align: center;
+}
+
+/* テーブル */
+.review__table {
+    display: flex;
+    margin: 50px auto;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.review__row {
+    border-top: 1px solid #777;
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.review__label:first-of-type {
+    padding-left: 48px;
+}
+
+.review__label:last-of-type {
+    padding-right: 0px;
+}
+
+.review__label {
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+    gap: 24px;
+    padding: 20px 8px;
+    align-self: center;
+}
+
+.review__form-btn {
+    position: absolute;
+    font-size: 17px;
+    right: 30%;
+    border: 1px solid #E0DFDE;
+    color: #000;
+    background-color: #fff;
+}

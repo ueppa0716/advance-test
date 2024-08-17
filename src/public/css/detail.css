@@ -40,6 +40,12 @@
     width: 100%;
 }
 
+.detail__shop-comment {
+    font-size: 10px;
+    text-align: right;
+    margin: 0;
+}
+
 .detail__shop-img {
     width: 100%;
 }

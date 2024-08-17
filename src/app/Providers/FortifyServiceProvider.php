@@ -10,8 +10,8 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use App\Http\Controllers\Auth\LoginController;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -36,6 +36,12 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView(function () {
             return view('auth.login');
+        });
+
+        // カスタム認証ロジックを使用する
+        Fortify::authenticateUsing(function (Request $request) {
+            $controller = new LoginController();
+            return $controller->login($request);
         });
 
         RateLimiter::for('login', function (Request $request) {

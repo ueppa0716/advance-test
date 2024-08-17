@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -69,7 +71,24 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'authority' => 2,
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function manager(RegisterRequest $request)
+    {
+        if ($request->has('owner')) {
+            $data = $request->only(['name', 'email', 'password']);
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'authority' => 1,
+                'password' => Hash::make($data['password']),
+            ]);
+            return redirect()->back()->with('success', '店舗代表者の登録が完了しました');
+        } else {
+            return view('manager');
+        }
     }
 }

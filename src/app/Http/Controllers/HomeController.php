@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReserveRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Reservation;
@@ -13,6 +14,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -146,7 +148,7 @@ class HomeController extends Controller
 
         $shopInfos->each(function ($shopInfo) use ($userLikes, $shopRatings) {
             $shopInfo->liked = $userLikes->contains('shop_id', $shopInfo->id);
-            $shopInfo->average_rating = $shopRatings->get($shopInfo->id, 0); // 評価点の平均を設定、デフォルトは0
+            $shopInfo->average_rating = $shopRatings->get($shopInfo->id); // 評価点の平均を設定、nullのままにする
         });
 
         return view('shop', compact('shopInfos', 'locations', 'categories'));
@@ -192,6 +194,20 @@ class HomeController extends Controller
         $shopInfo->average_rating = $shopRating;
 
         return view('detail', compact('shopInfo', 'now'));
+    }
+
+    public function evaluation(Request $request)
+    {
+        $user = Auth::user();
+        $shop = Shop::find($request->shop_id);
+        $now = Carbon::now();
+
+        $reviewLists = Reservation::where('shop_id', $request->shop_id)
+            ->with('shop.location', 'shop.category')
+            ->where('date', '<', $now)
+            ->paginate(5);
+
+        return view('evaluation', compact('shop', 'reviewLists'));
     }
 
     public function done(ReserveRequest $request)
