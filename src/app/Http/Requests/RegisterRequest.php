@@ -26,7 +26,11 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string|max:191',
             'email' => 'required|email|unique:users|string|max:191',
-            'password' => 'required|min:8|max:191'
+            'password' => 'required|min:8|max:191',
+            'location' => 'required',
+            'category' => 'required',
+            'detail' => 'required',
+            'photo' => 'required',
         ];
     }
 
@@ -44,6 +48,10 @@ class RegisterRequest extends FormRequest
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードを8文字以上で入力してください',
             'password.max' => 'パスワードを191文字以下で入力してください',
+            'location.required' => 'エリアを選択してください',
+            'category.required' => 'ジャンルを選択してください',
+            'detail.required' => '店舗紹介を入力してください',
+            'photo.required' => '写真を選択してください',
         ];
     }
 }

@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Log;
 class LoginController extends Controller
 {
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/mypage';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -46,23 +39,26 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         // バリデーション
-        $request->validate([
+        $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
         // 認証試行
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt($validated)) {
             $request->session()->regenerate();
+
+            Log::info('Login successful for user: ' . Auth::user()->email);
 
             // ユーザーのauthorityに基づいてリダイレクト
             return $this->authenticated($request, Auth::user());
         }
 
         // 認証失敗時の処理
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
-        ]);
+        Log::warning('Login failed for email: ' . $request->email);
+        return back()->withErrors([
+            'email' => trans('auth.failed'),
+        ])->onlyInput('email');
     }
 
     /**
@@ -75,13 +71,10 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->authority == 0) {
-            Log::info('Redirecting to /manager');
             return redirect('/manager');
         } elseif ($user->authority == 1) {
-            Log::info('Redirecting to /owner');
             return redirect('/owner');
         } else {
-            Log::info('Redirecting to /mypage');
             return redirect('/mypage');
         }
     }
@@ -100,18 +93,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-    }
-
-    public function redirectTo()
-    {
-        $user = Auth::user();
-
-        if ($user->authority == 0) {
-            return view('/manager');
-        } elseif ($user->authority == 1) {
-            return view('/owner');
-        } else {
-            return redirect('/mypage');
-        }
     }
 }

@@ -10,8 +10,11 @@
 }
 
 .manager-form__success-message {
-    font-size: 20px;
+    font-size: 15px;
     color: blue;
+    display: flex;
+    justify-content: center;
+    margin: 0;
 }
 
 .manager-form {

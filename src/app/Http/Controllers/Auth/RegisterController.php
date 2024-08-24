@@ -11,6 +11,10 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Shop;
+use App\Models\Location;
+use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -66,6 +70,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+
     protected function create(array $data)
     {
         return User::create([
@@ -76,7 +81,21 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function manager(RegisterRequest $request)
+    public function owner()
+    {
+        $user = Auth::user();
+        $locations = Location::all();
+        $categories = Category::all();
+        return view('owner', compact('user', 'locations', 'categories'));
+    }
+
+    public function manager()
+    {
+        $user = Auth::user();
+        return view('manager', compact('user'));
+    }
+
+    public function admin(RegisterRequest $request)
     {
         if ($request->has('owner')) {
             $data = $request->only(['name', 'email', 'password']);
@@ -87,8 +106,35 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
             ]);
             return redirect()->back()->with('success', '店舗代表者の登録が完了しました');
-        } else {
-            return view('manager');
+        }
+
+        if ($request->has('shop')) {
+            // 画像ファイルを取得
+            $file = $request->file('photo');
+
+            if ($file) {
+                // ファイル名を生成
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+
+                // ストレージに保存
+                $path = $file->storeAs('images', $filename, 'public');
+
+                // 保存先のURLを取得
+                $url = Storage::url($path);
+            } else {
+                $url = null; // 画像がアップロードされていない場合の処理
+            }
+
+            $data = $request->only(['name', 'location', 'category', 'detail']);
+            Shop::create([
+                'name' => $data['name'],
+                'location_id' => $data['location'],
+                'category_id' => $data['category'],
+                'detail' => $data['detail'],
+                'photo' => $url, // 画像のURLを保存
+            ]);
+
+            return redirect()->back()->with('success', '店舗情報の登録が完了しました');
         }
     }
 }

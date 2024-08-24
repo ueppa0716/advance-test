@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/';
+    public const HOME = '/mypage';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -58,16 +58,16 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return string
      */
-    public function redirectTo()
-    {
-        $user = Auth::user();
+    // public function redirectTo()
+    // {
+    //     $user = Auth::user();
 
-        if ($user->authority == 0) {
-            return '/manager';
-        } elseif ($user->authority == 1) {
-            return '/owner';
-        } else {
-            return '/mypage';
-        }
-    }
+    //     if ($user->authority == 0) {
+    //         return '/manager';
+    //     } elseif ($user->authority == 1) {
+    //         return '/owner';
+    //     } else {
+    //         return '/mypage';
+    //     }
+    // }
 }
