@@ -48,7 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/manager', [RegisterController::class, 'manager']);
     Route::post('/manager', [RegisterController::class, 'admin']);
     Route::get('/owner', [RegisterController::class, 'owner']);
-    Route::post('/owner', [RegisterController::class, 'admin']);
+    Route::post('/owner', [RegisterController::class, 'open']);
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能
     });

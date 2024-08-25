@@ -20,8 +20,8 @@
 .owner-form {
     margin: 50px auto;
     background-color: #FFF;
-    width: 30vw;
-    height: 280px;
+    width: 40vw;
+    height: 350px;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
 }
@@ -68,6 +68,10 @@
     color: black;
     font-family: serif;
     border-bottom: 1px solid black;
+}
+
+.owner-form__comment-area {
+    width: 100%;
 }
 
 .owner-form__error-message {

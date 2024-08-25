@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ShopRequest;
 use App\Models\Shop;
 use App\Models\Location;
 use App\Models\Category;
@@ -45,7 +46,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest')->except(['owner', 'manager', 'open', 'admin']);
     }
 
     /**
@@ -107,7 +108,10 @@ class RegisterController extends Controller
             ]);
             return redirect()->back()->with('success', '店舗代表者の登録が完了しました');
         }
+    }
 
+    public function open(ShopRequest $request)
+    {
         if ($request->has('shop')) {
             // 画像ファイルを取得
             $file = $request->file('photo');
@@ -125,7 +129,12 @@ class RegisterController extends Controller
                 $url = null; // 画像がアップロードされていない場合の処理
             }
 
-            $data = $request->only(['name', 'location', 'category', 'detail']);
+            $data = $request->only([
+                'name',
+                'location',
+                'category',
+                'detail'
+            ]);
             Shop::create([
                 'name' => $data['name'],
                 'location_id' => $data['location'],
