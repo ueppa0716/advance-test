@@ -89,11 +89,14 @@ select {
 
 .shop__group {
     width: 23.5%;
-    height: fit-content;
+    height: auto;
     background-color: white;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
     margin: 0 15px 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .shop__content {
@@ -123,8 +126,8 @@ select {
 
 .shop__img {
     width: 100%;
-    height: 100%;
-    max-height: 185px;
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px 8px 0 0;
 }
 

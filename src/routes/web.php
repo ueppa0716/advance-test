@@ -47,8 +47,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/evaluation', [HomeController::class, 'evaluation']);
     Route::get('/manager', [RegisterController::class, 'manager']);
     Route::post('/manager', [RegisterController::class, 'admin']);
+    Route::get('/mail', [HomeController::class, 'mail']);
+    Route::post('/mail', [HomeController::class, 'send']);
     Route::get('/owner', [RegisterController::class, 'owner']);
     Route::post('/owner', [RegisterController::class, 'open']);
+    Route::get('/update', [HomeController::class, 'info']);
+    Route::post('/update', [HomeController::class, 'update']);
+    Route::get('/check', [HomeController::class, 'check']);
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能
     });

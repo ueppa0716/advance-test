@@ -153,11 +153,14 @@
 
 .mypage__like__shop {
     width: 45%;
-    height: fit-content;
+    height: auto;
     background-color: white;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
     margin: 0 15px 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .mypage__like__content {
@@ -186,7 +189,8 @@
 
 .mypage__like__img {
     width: 100%;
-    max-height: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 8px 8px 0 0;
 }
 

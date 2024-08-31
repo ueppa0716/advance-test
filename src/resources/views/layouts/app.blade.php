@@ -23,9 +23,10 @@
                         @if (isset($user))
                         @if ($user->authority == 0)
                         <li class="menu__link-li"><a class="menu__link-text" href="/manager">Manager</a></li>
+                        <li class="menu__link-li"><a class="menu__link-text" href="/mail">Mail</a></li>
                         @endif
                         @if ($user->authority == 1)
-                        <li class="menu__link-li"><a class="menu__link-text" href="/manager">Owner</a></li>
+                        <li class="menu__link-li"><a class="menu__link-text" href="/owner">Owner</a></li>
                         @endif
                         @endif
                         @if (Auth::check())

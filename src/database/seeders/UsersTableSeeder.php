@@ -25,5 +25,13 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => $now,
         ]);
+
+        User::create([
+            'name' => "店長A",
+            'email' => "shop@gmail.com",
+            'authority' => 1,
+            'password' => Hash::make('password'),
+            'email_verified_at' => $now,
+        ]);
     }
 }

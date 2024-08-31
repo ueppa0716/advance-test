@@ -87,7 +87,9 @@ class RegisterController extends Controller
         $user = Auth::user();
         $locations = Location::all();
         $categories = Category::all();
-        return view('owner', compact('user', 'locations', 'categories'));
+        $userShop = Shop::where('user_id', $user->id)->get();
+
+        return view('owner', compact('user', 'locations', 'categories', 'userShop'));
     }
 
     public function manager()
@@ -133,12 +135,14 @@ class RegisterController extends Controller
                 'name',
                 'location',
                 'category',
+                'user_id',
                 'detail'
             ]);
             Shop::create([
                 'name' => $data['name'],
                 'location_id' => $data['location'],
                 'category_id' => $data['category'],
+                'user_id' => $data['user_id'],
                 'detail' => $data['detail'],
                 'photo' => $url, // 画像のURLを保存
             ]);

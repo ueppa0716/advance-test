@@ -1,0 +1,126 @@
+.content {
+    padding-top: 60px;
+}
+
+.mail-form {
+    background-color: #FFF;
+    width: 40vw;
+    height: 300px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px gray;
+}
+
+.mail-form__heading {
+    background-color: rgb(48, 93, 255);
+    color: #FFF;
+    margin: 0px;
+    border-radius: 8px 8px 0px 0px;
+    padding: 15px;
+    font-size: 15px;
+}
+
+.mail-form__inner {
+    display: block;
+    padding: 25px;
+}
+
+@media screen and (max-width: 1200px) {
+    .mail-form__form {
+        width: 100%;
+    }
+}
+
+.mail-form__group {
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.mail-form__label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.mail-form__label {
+    display: block;
+    width: 20%;
+    height: 35px;
+    border: none;
+    color: black;
+    font-family: serif;
+    margin: 0;
+}
+
+.mail-form__input {
+    display: block;
+    width: 80%;
+    height: 35px;
+    border: none;
+    color: black;
+    font-family: serif;
+    border-bottom: 1px solid black;
+}
+
+.mail-form__btn {
+    width: 5vw;
+    border-radius: 8px;
+    background-color: rgb(33, 75, 224);
+    color: white;
+    height: 35px;
+    font-size: 1.0vw;
+    border: none;
+    display: block;
+    margin-left: auto;
+    text-align: center;
+}
+
+.mail-form__nav {
+    text-align: center;
+}
+
+.mail-form__nav-message {
+    margin: 0px;
+    color: #777;
+}
+
+.mail-form__nav-link {
+    color: rgb(33, 75, 224);
+}
+
+.img-mail {
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px 0 0;
+}
+
+.img-lock {
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px 0 0;
+}
+
+.mail__success-message {
+    display: flex;
+    color: blue;
+    font-size: 15px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.mail-form__error-message {
+    display: flex;
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .mail-form {
+        width: 70vw;
+    }
+
+    .mail-form__btn {
+        width: 10vw;
+        font-size: 2.0vw;
+    }
+}

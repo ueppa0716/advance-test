@@ -6,6 +6,7 @@ use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReserveRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ShopRequest;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Reservation;
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use App\Mail\NotificationEmail;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -102,6 +106,7 @@ class HomeController extends Controller
 
     public function shop(Request $request)
     {
+        $user = Auth::user();
         if ($user = Auth::user()) {
             if (is_null($user->email_verified_at)) {
                 return view('auth.verify');
@@ -151,7 +156,7 @@ class HomeController extends Controller
             $shopInfo->average_rating = $shopRatings->get($shopInfo->id); // 評価点の平均を設定、nullのままにする
         });
 
-        return view('shop', compact('shopInfos', 'locations', 'categories'));
+        return view('shop', compact('user', 'shopInfos', 'locations', 'categories'));
     }
 
     private function getSearchQuery($request, $query)
@@ -193,7 +198,7 @@ class HomeController extends Controller
         // 評価点の平均を`shopInfo`に追加
         $shopInfo->average_rating = $shopRating;
 
-        return view('detail', compact('shopInfo', 'now'));
+        return view('detail', compact('user', 'shopInfo', 'now'));
     }
 
     public function evaluation(Request $request)
@@ -207,7 +212,7 @@ class HomeController extends Controller
             ->where('date', '<', $now)
             ->paginate(5);
 
-        return view('evaluation', compact('shop', 'reviewLists'));
+        return view('evaluation', compact('user', 'shop', 'reviewLists'));
     }
 
     public function done(ReserveRequest $request)
@@ -223,7 +228,7 @@ class HomeController extends Controller
             'people' => $request->people,
         ]);
 
-        return view('done');
+        return view('done', compact('user'));
     }
 
     public function reserve(Request $request)
@@ -261,5 +266,106 @@ class HomeController extends Controller
                 return redirect()->back()->with('message', 'レビューありがとうございます。');
             }
         }
+    }
+
+    public function info()
+    {
+        $user = Auth::user();
+        $locations = Location::all();
+        $categories = Category::all();
+        $userShop = Shop::where('user_id', $user->id)->first();
+
+        // 店舗ごとの評価点の平均を計算
+        $shopRating = Reservation::where('shop_id', $userShop->id)
+            ->avg('point');
+
+        // 評価点の平均を`shopInfo`に追加
+        $userShop->average_rating = $shopRating;
+
+        return view('info', compact('user', 'userShop', 'locations', 'categories'));
+    }
+
+    public function update(Request $request)
+    {
+        // 該当の店舗情報を取得
+        $userShop = Shop::where('user_id', $request->user_id)->first();
+
+        if ($request->has('update')) {
+            // 現在の画像を削除するためのURLを保存
+            $oldPhoto = $userShop->photo;
+
+            // 新しい画像ファイルを取得
+            $file = $request->file('photo');
+
+            if ($file) {
+                // ファイル名を生成
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+
+                // ストレージに新しい画像を保存
+                $path = $file->storeAs('images', $filename, 'public');
+
+                // 保存先のURLを取得
+                $url = Storage::url($path);
+
+                // 古い画像が存在する場合は削除
+                if ($oldPhoto) {
+                    // `public`ディスクのURLをパスに変換して削除
+                    Storage::disk('public')->delete(str_replace('/storage/', '', $oldPhoto));
+                }
+
+                // 新しい画像のURLを設定
+                $userShop->photo = $url;
+            }
+
+            // 店舗情報を更新
+            $userShop->update([
+                'name' => $request->input('name') ?? $userShop->name,
+                'location_id' => $request->input('location') ?? $userShop->location_id,
+                'category_id' => $request->input('category') ?? $userShop->category_id,
+                'detail' => $request->input('detail') ?? $userShop->detail,
+                'photo' => $userShop->photo, // 新しい画像のURLを保存
+            ]);
+
+            return redirect()->back()->with('success', '店舗情報の更新が完了しました');
+        }
+    }
+
+    public function check()
+    {
+        $user = Auth::user();
+        $userShop = Shop::where('user_id', $user->id)->first();
+        $now = Carbon::now();
+
+        $reserveLists = Reservation::where('shop_id', $userShop->id)
+            ->with('shop.location', 'shop.category')
+            ->where('date', '>', $now)
+            ->paginate(5);
+
+        return view('check', compact('user', 'userShop', 'reserveLists'));
+    }
+
+    public function mail()
+    {
+        $user = Auth::user();
+        return view('emails.mail', compact('user'));
+    }
+
+    public function send(Request $request)
+    {
+        $request->validate([
+            'subject' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $subject = $request->input('subject');
+        $content = $request->input('content');
+
+        $users = User::where('authority', 2)->get(); // authority が 2 のユーザーを取得
+
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new NotificationEmail($subject, $content));
+        }
+
+        return redirect()->back()->with('success', 'メールの送信が完了しました');
     }
 }

@@ -58,6 +58,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Like::class);
     }
 
+    public function shop()
+    {
+        return $this->hasOne(Shop::class);
+    }
+
     public function averageRating()
     {
         return $this->hasOne(Reservation::class)

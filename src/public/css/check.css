@@ -1,0 +1,50 @@
+.content {
+    display: block;
+}
+
+.reserve__heading {
+    font-size: 2.0vw;
+    text-align: center;
+}
+
+/* テーブル */
+.reserve__table {
+    display: flex;
+    margin: 50px auto;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.reserve__row {
+    border-top: 1px solid #777;
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reserve__label:first-of-type {
+    padding-left: 48px;
+}
+
+.reserve__label:last-of-type {
+    padding-right: 0px;
+}
+
+.reserve__label {
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+    gap: 24px;
+    padding: 20px 8px;
+    align-self: center;
+}
+
+.reserve__form-btn {
+    position: absolute;
+    font-size: 17px;
+    right: 30%;
+    border: 1px solid #E0DFDE;
+    color: #000;
+    background-color: #fff;
+}

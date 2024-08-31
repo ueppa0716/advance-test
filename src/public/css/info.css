@@ -1,0 +1,178 @@
+.detail__group {
+    padding: 0 6%;
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.detail__group-shop {
+    height: fit-content;
+}
+
+.detail__group-shop {
+    width: 50%;
+    height: auto;
+    margin-right: 100px;
+}
+
+.detail__shop-heading {
+    display: flex;
+    vertical-align: middle;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.detail__shop-btn {
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 1px gray;
+}
+
+.detail__shop-title {
+    margin: 0 0 0 10px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.detail__shop-content {
+    width: 100%;
+}
+
+.detail__shop-comment {
+    font-size: 10px;
+    text-align: right;
+    margin: 0;
+}
+
+.detail__shop-img {
+    max-width: 100%;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.detail__shop-detail {
+    display: flex;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.detail__shop-tag {
+    margin-right: 5px;
+    background-color: rgb(238, 238, 238);
+}
+
+.detail__group-update {
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px gray;
+    background-color: rgb(48, 93, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detail__update-content {
+    padding: 30px;
+}
+
+.detail__update-input {
+    width: 90%;
+    margin-bottom: 15px;
+    display: block;
+    font-size: 13px;
+}
+
+.detail__update-title {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 0 20px 0;
+}
+
+.detail__update-table {
+    background-color: rgb(77, 127, 255);
+    color: white;
+    text-align: left;
+    font-size: 13px;
+    font-weight: lighter;
+    padding: 20px;
+}
+
+.detail__update__success-message {
+    display: flex;
+    color: yellow;
+    font-size: 15px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.detail__update__error-message {
+    display: flex;
+    color: red;
+    font-size: 13px;
+    align-items: center;
+}
+
+.detail__update-label {
+    margin-right: 15px;
+}
+
+.detail__update-btn {
+    background-color: rgb(33, 75, 224);
+    border: none;
+    color: white;
+    width: 100%;
+    height: 10%;
+    border-radius: 0 0 8px 8px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .detail__group {
+        flex-direction: column;
+        padding: 0 3%;
+        margin-bottom: 50px;
+    }
+
+    .detail__group-shop,
+    .detail__group-update {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .detail__group-update {
+        margin-top: 20px;
+    }
+
+    .detail__shop-heading {
+        justify-content: left;
+    }
+
+    .detail__shop-title {
+        font-size: 20px;
+    }
+
+    .detail__update-input {
+        width: 100%;
+    }
+
+    .detail__update-title {
+        font-size: 18px;
+    }
+
+    .detail__update-table {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .detail__update-btn {
+        padding: 20px;
+    }
+
+}
