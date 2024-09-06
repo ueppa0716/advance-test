@@ -6,6 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MiddlewareController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\OwnerController;
 
 
 /*
@@ -23,10 +27,10 @@ use App\Http\Controllers\Auth\LoginController;
 //     return view('welcome');
 // });
 
-Route::get('/', [HomeController::class, 'shop']);
-Route::post('/', [HomeController::class, 'shop']);
-Route::get('/thanks', [HomeController::class, 'thanks']);
-Route::get('/detail', [HomeController::class, 'detail']);
+Route::get('/', [ShopController::class, 'shop']);
+Route::post('/', [ShopController::class, 'shop']);
+Route::get('/thanks', [RegisterController::class, 'thanks']);
+Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegisterController::class, 'register']);
@@ -39,21 +43,21 @@ Auth::routes(['verify' => true]);
 
 // 認証済みユーザーのためのルート
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/mypage', [HomeController::class, 'mypage']);
-    Route::post('/mypage', [HomeController::class, 'mypage']);
-    Route::post('/done', [HomeController::class, 'done']);
-    Route::get('/reservation', [HomeController::class, 'reserve']);
-    Route::post('/reservation', [HomeController::class, 'review']);
-    Route::get('/evaluation', [HomeController::class, 'evaluation']);
-    Route::get('/manager', [RegisterController::class, 'manager']);
-    Route::post('/manager', [RegisterController::class, 'admin']);
-    Route::get('/mail', [HomeController::class, 'mail']);
-    Route::post('/mail', [HomeController::class, 'send']);
-    Route::get('/owner', [RegisterController::class, 'owner']);
-    Route::post('/owner', [RegisterController::class, 'open']);
-    Route::get('/update', [HomeController::class, 'info']);
-    Route::post('/update', [HomeController::class, 'update']);
-    Route::get('/check', [HomeController::class, 'check']);
+    Route::get('/mypage', [UserController::class, 'mypage']);
+    Route::post('/mypage', [UserController::class, 'mypage']);
+    Route::post('/done', [ShopController::class, 'done']);
+    Route::get('/reservation', [UserController::class, 'reserve']);
+    Route::post('/reservation', [UserController::class, 'review']);
+    Route::get('/evaluation/{shop_id}', [ShopController::class, 'evaluation']);
+    Route::get('/manager', [ManagerController::class, 'manager']);
+    Route::post('/manager', [ManagerController::class, 'admin']);
+    Route::get('/mail', [ManagerController::class, 'mail']);
+    Route::post('/mail', [ManagerController::class, 'send']);
+    Route::get('/owner', [OwnerController::class, 'owner']);
+    Route::post('/owner', [OwnerController::class, 'open']);
+    Route::get('/update', [OwnerController::class, 'info']);
+    Route::post('/update', [OwnerController::class, 'update']);
+    Route::get('/check', [OwnerController::class, 'check']);
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能
     });

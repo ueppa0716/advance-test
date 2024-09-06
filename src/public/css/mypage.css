@@ -205,7 +205,10 @@
 }
 
 .detail__btn {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
     border-radius: 8px;
     background-color: rgb(33, 75, 224);
     color: white;

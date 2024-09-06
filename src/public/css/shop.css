@@ -142,13 +142,15 @@ select {
 }
 
 .detail__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 8vw;
     border-radius: 8px;
     background-color: rgb(33, 75, 224);
     color: white;
     font-size: 1vw;
     border: none;
-    padding: 8% 15%;
     white-space: nowrap;
 }
 

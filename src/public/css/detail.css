@@ -59,7 +59,7 @@
 }
 
 .detail__shop-tag {
-    margin-right: 5px;
+    margin-right: 15px;
     background-color: rgb(238, 238, 238);
 }
 
@@ -120,6 +120,15 @@
     border-radius: 0 0 8px 8px;
 }
 
+.detail__evaluation-btn {
+    background-color: #cecece;
+    color: blue;
+    width: 100%;
+    height: 10%;
+    border-radius: 8px;
+    font-size: 1.0vw;
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
     .detail__group {
@@ -161,6 +170,10 @@
 
     .detail__reserve-btn {
         padding: 20px;
+    }
+
+    .detail__evaluation-btn {
+    font-size: 2.0vw;
     }
 
 }
