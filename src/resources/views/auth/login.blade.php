@@ -14,12 +14,13 @@
                     <img class="img-mail" src="https://img.icons8.com/?size=100&id=85500&format=png&color=555555"
                         alt="メール">
                     <input class="login-form__input" type="mail" name="email" id="email" placeholder="Email"
-                        value="{{ old('email') }}" />
+                        value="{{ old('email', $email) }}" />
                 </div>
                 <div class="login-form__group">
                     <img class="img-lock" src="https://img.icons8.com/?size=100&id=83187&format=png&color=555555"
                         alt="ロック">
-                    <input class="login-form__input" type="password" name="password" id="password" placeholder="Password">
+                    <input class="login-form__input" type="password" name="password" id="password" placeholder="Password"
+                        value="{{ $password }}">
                 </div>
                 <input class="login-form__btn btn" type="submit" value="ログイン">
             </form>

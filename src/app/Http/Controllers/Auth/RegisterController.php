@@ -16,6 +16,7 @@ use App\Models\Shop;
 use App\Models\Location;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -58,8 +59,12 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = $this->create($request->all());
+        $email = $request->email;
+        $password = $request->password;
 
-        return view('thanks');
+        event(new Registered($user));
+
+        return view('thanks', compact('email', 'password'));
     }
 
     /**
