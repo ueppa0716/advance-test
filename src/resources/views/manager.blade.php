@@ -14,7 +14,7 @@
 <div class="manager-form">
     <h2 class="manager-form__heading">店舗代表者登録</h2>
     <div class="manager-form__inner">
-        <form class="manager-form__form" action="/manager" method="post">
+        <form class="manager-form__form" action="/manager/admin" method="post">
             @csrf
             <div class="manager-form__group">
                 <img class="img-user" src="https://img.icons8.com/?size=100&id=60655&format=png&color=555555"

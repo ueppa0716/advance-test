@@ -29,7 +29,7 @@
         <th class="reserve__label">
             <p><a class="modal__label" href="#modal_review_{{ $reserveList->id }}">店舗の評価とコメント</a></p>
             <div class="modal_group" id="modal_review_{{ $reserveList->id }}">
-                <form class="review__form" action="/reservation" method="post">
+                <form class="review__form" action="/reservation/review" method="post">
                     @csrf
                     <div class="modal__heading"><span class="modal_btn"><a class="modal__btn-text" href="#">x</a></span></div>
                     <label class="review__form-name">店舗名：{{ $reserveList->shop->name }}</label>

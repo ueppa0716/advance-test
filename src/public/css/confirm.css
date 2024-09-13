@@ -1,0 +1,200 @@
+.confirm__group {
+    padding: 0 6%;
+    display: flex;
+    height: fit-content;
+    width: 100%;
+}
+
+.confirm__group-shop {
+    height: fit-content;
+}
+
+.confirm__group-shop {
+    width: 50%;
+    margin-right: 100px;
+}
+
+.confirm__shop-heading {
+    display: flex;
+    vertical-align: middle;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.confirm__shop-btn {
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 1px gray;
+}
+
+.confirm__shop-title {
+    margin: 0 0 0 10px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.confirm__shop-content {
+    width: 100%;
+}
+
+.confirm__shop-comment {
+    font-size: 10px;
+    text-align: right;
+    margin: 0;
+}
+
+.confirm__shop-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.confirm__shop-confirm {
+    display: flex;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.confirm__shop-tag {
+    margin-right: 15px;
+    background-color: rgb(238, 238, 238);
+}
+
+.confirm__group-reserve {
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px gray;
+    background-color: rgb(48, 93, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.confirm__reserve-content {
+    padding: 30px;
+    height: 80%;
+}
+
+.confirm__reserve-input {
+    width: 90%;
+    margin-bottom: 15px;
+    display: block;
+    font-size: 13px;
+}
+
+.confirm__reserve-title {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 0 20px 0;
+}
+
+.confirm__reserve-table {
+    background-color: rgb(77, 127, 255);
+    color: white;
+    text-align: left;
+    font-size: 13px;
+    font-weight: lighter;
+    border-collapse: separate;
+    width: 90%;
+}
+
+.confirm__reserve__error-message {
+    display: flex;
+    color: red;
+    font-size: 13px;
+    align-items: center;
+}
+
+.confirm__reserve-label {
+    padding: 6px;
+    width: 70px;
+}
+
+.confirm__reserve-btn {
+    background-color: rgb(33, 75, 224);
+    border: none;
+    color: white;
+    width: 100%;
+    height: 10%;
+    border-radius: 0 0 8px 8px;
+    font-size: 13px;
+}
+
+.confirm__evaluation-btn {
+    background-color: #cecece;
+    color: blue;
+    width: 100%;
+    height: 10%;
+    border-radius: 8px;
+    font-size: 1.0vw;
+}
+
+.detail__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(85, 122, 255);
+    color: white;
+    border: none;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .confirm__group {
+        flex-direction: column;
+        padding: 0 3%;
+        margin-bottom: 50px;
+    }
+
+    .confirm__group-shop,
+    .confirm__group-reserve {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .confirm__group-reserve {
+        margin-top: 20px;
+    }
+
+    .confirm__shop-heading {
+        justify-content: left;
+    }
+
+    .confirm__shop-title {
+        font-size: 20px;
+    }
+
+    .confirm__reserve-input {
+        width: 100%;
+    }
+
+    .confirm__reserve-title {
+        font-size: 18px;
+    }
+
+    .confirm__reserve-table {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .confirm__reserve-btn {
+        padding: 20px;
+    }
+
+    .detail__btn {
+        padding: 20px;
+}
+
+    .confirm__evaluation-btn {
+        font-size: 2.0vw;
+    }
+
+}

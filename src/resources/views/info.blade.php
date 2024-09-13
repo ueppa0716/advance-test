@@ -37,7 +37,7 @@
             <p class="detail__shop-txt">{{ $userShop->detail }}</p>
         </div>
     </div>
-    <form class="detail__group-update" method="post" action="/update" enctype="multipart/form-data">
+    <form class="detail__group-update" method="post" action="/update/shop" enctype="multipart/form-data">
         @csrf
         <div class="detail__update-content">
             <p class="detail__update-title">店舗情報更新</p>

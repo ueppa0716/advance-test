@@ -34,7 +34,7 @@
             <p class="detail__shop-txt">{{ $shopInfo->detail }}</p>
         </div>
     </div>
-    <form class="detail__group-reserve" method="post" action="/done">
+    <form class="detail__group-reserve" method="post" action="/confirm/{{ $shopInfo->id }}">
         @csrf
         <div class="detail__reserve-content">
             <p class="detail__reserve-title">予約</p>
@@ -50,25 +50,6 @@
                     @endfor
             </select>
             <input type="hidden" name="shop_id" value="{{ $shopInfo->id }}">
-            <!-- 確認フィールド -->
-            <table class="detail__reserve-table">
-                <tr class="detail__reserve-row">
-                    <td class="detail__reserve-label">Shop</td>
-                    <td class="detail__reserve-txt">{{ $shopInfo->name }}</td>
-                </tr>
-                <tr class="detail__reserve-row">
-                    <td class="detail__reserve-label">Date</td>
-                    <td class="detail__reserve-txt">{{ old('date') }}</td>
-                </tr>
-                <tr class="detail__reserve-row">
-                    <td class="detail__reserve-label">Time</td>
-                    <td class="detail__reserve-txt">{{ old('time') }}</td>
-                </tr>
-                <tr class="detail__reserve-row">
-                    <td class="detail__reserve-label">Number</td>
-                    <td class="detail__reserve-txt">{{ old('people') }}</td>
-                </tr>
-            </table>
             <p class="detail__reserve__error-message">
                 @error('date')
                 {{ $message }}
@@ -86,7 +67,7 @@
             </p>
         </div>
         <!-- 予約ボタン -->
-        <input class="detail__reserve-btn" type="submit" value="予約する" name="reserve">
+        <input class="detail__reserve-btn" type="submit" value="予約入力内容を確認する" name="reserve">
     </form>
 </div>
 @endsection

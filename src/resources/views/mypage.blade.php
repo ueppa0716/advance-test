@@ -42,13 +42,13 @@
                             alt="時計">
                         <p class="mypage__reserve-title">予約{{ $loop->iteration }}</p>
                     </div>
-                    <form class="" method="post" action="/mypage">
+                    <form class="" method="post" action="/mypage/delete">
                         @csrf
                         <input class="mypage__cancel-btn" type="submit" value="x" name="cancel">
                         <input type="hidden" name="shop_id" value="{{ $reserveList->shop_id }}">
                     </form>
                 </div>
-                <form class="" method="post" action="/mypage">
+                <form class="" method="post" action="/mypage/update">
                     @csrf
                     <table class="mypage__reserve-table">
                         <tr class="mypage__reserve-row">
@@ -118,7 +118,7 @@
                         </ul>
                         <div class="mypage__like__group-form">
                             <a href="/detail/{{ $likeList->shop->id }}" class="detail__btn">詳しくみる</a>
-                            <form class="" method="post" action="/mypage">
+                            <form class="" method="post" action="/mypage/like">
                                 @csrf
                                 <button class="like__btn" type="submit" value="like" name="like"><span
                                         class="like__logo-red"></span></button>

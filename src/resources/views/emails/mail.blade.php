@@ -13,7 +13,7 @@
             {{ session('success') }}
             @endif
         </p>
-        <form class="" action="/mail" method="post">
+        <form class="" action="/mail/send" method="post">
             @csrf
             <div class="mail-form__group">
                 <label class="mail-form__label" for="subject">件名:</label>

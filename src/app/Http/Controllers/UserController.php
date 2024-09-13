@@ -31,41 +31,8 @@ class UserController extends Controller
             return view('auth.verify');
         }
 
-        if ($request->has('cancel')) {
-            $reserveList = Reservation::where('user_id', $user->id)
-                ->where('shop_id', $request->shop_id)
-                ->where('date', '>', $now)
-                ->first();
-            if ($reserveList) {
-                $reserveList->delete();
-            }
-        }
-
-        if ($request->has('like')) {
-            $likeList = Like::where('user_id', $user->id)
-                ->where('shop_id', $request->shop_id)
-                ->first();
-            if ($likeList) {
-                $likeList->delete();
-            }
-        }
-
         if ($request->has('detail')) {
             $this->detail($request);
-        }
-
-        if ($request->has('update')) {
-            $reserveList = Reservation::where('user_id', $user->id)
-                ->where('shop_id', $request->shop_id)
-                ->where('date', '>', $now)
-                ->first();
-            if ($reserveList) {
-                $reserveList->update([
-                    'date' => $request->input('date') . ' ' . $request->input('time'),
-                    'people' => $request->input('people'),
-                ]);
-                return redirect()->back()->with('message', '予約変更が完了しました');
-            }
         }
 
         $reserveLists = Reservation::where('user_id', $user->id)

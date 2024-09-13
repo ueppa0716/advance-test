@@ -31,25 +31,6 @@ class ShopController extends Controller
             }
         }
 
-        if ($request->has('like')) {
-            if (empty($user)) {
-                return view('auth.login');
-            } else {
-                $likeList = Like::where('user_id', $user->id)
-                    ->where('shop_id', $request->shop_id)
-                    ->first();
-
-                if ($likeList) {
-                    $likeList->delete();
-                } else {
-                    $like = Like::create([
-                        'user_id' => $user->id,
-                        'shop_id' => $request->shop_id,
-                    ]);
-                }
-            }
-        }
-
         $query = Shop::query();
         $locations = Location::all();
         $categories = Category::all();
@@ -131,21 +112,5 @@ class ShopController extends Controller
             ->paginate(5);
 
         return view('evaluation', compact('user', 'shop', 'reviewLists'));
-    }
-
-    public function done(ReserveRequest $request)
-    {
-        $user = Auth::user();
-
-        $reserveDate = Carbon::createFromFormat('Y-m-d H:i', $request->date . ' ' . $request->time);
-
-        Reservation::create([
-            'user_id' => $user->id,
-            'shop_id' => $request->shop_id,
-            'date' => $reserveDate,
-            'people' => $request->people,
-        ]);
-
-        return view('done', compact('user'));
     }
 }

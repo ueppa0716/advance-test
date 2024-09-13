@@ -55,7 +55,7 @@
             </ul>
             <div class="shop__group-form">
                 <a href="/detail/{{ $shopInfo->id }}" class="detail__btn">詳しくみる</a>
-                <form class="shop__group-btn" action="/" method="post">
+                <form class="shop__group-btn" action="/shop/like" method="post">
                     @csrf
                     @if ($shopInfo->liked)
                     <button class="like__btn" type="submit" value="like" name="like"><span

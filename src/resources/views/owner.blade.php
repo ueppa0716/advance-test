@@ -22,7 +22,7 @@
         @else
         <h2 class="owner-form__heading">店舗情報登録</h2>
         <div class="owner-form__inner">
-            <form class="owner-form__form" action="/owner" method="post" enctype="multipart/form-data">
+            <form class="owner-form__form" action="/owner/open" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="owner-form__group">
                     <input class="owner-form__input" type="text" name="name" id="name" placeholder="Shopname"

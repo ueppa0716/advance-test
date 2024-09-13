@@ -88,7 +88,7 @@ class OwnerController extends Controller
         return view('info', compact('user', 'userShop', 'locations', 'categories'));
     }
 
-    public function update(Request $request)
+    public function updateShop(Request $request)
     {
         // 該当の店舗情報を取得
         $userShop = Shop::where('user_id', $request->user_id)->first();
