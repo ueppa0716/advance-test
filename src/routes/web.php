@@ -12,6 +12,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ChargeController;
 
 
 /*
@@ -63,6 +64,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/update', [OwnerController::class, 'info']);
     Route::post('/update/shop', [OwnerController::class, 'updateShop']);
     Route::get('/check', [OwnerController::class, 'check']);
+    Route::get('/charge', [ChargeController::class, 'stripe']);
+    Route::post('/charge', [ChargeController::class, 'pay']);
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能
     });
