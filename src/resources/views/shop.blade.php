@@ -5,10 +5,10 @@
 @endsection
 
 @section('header')
-<form class="search__form" action="/" method="get">
+<form class="search-form" action="/" method="get">
     @csrf
-    <div class="search__form__location">
-        <select class="search__form__location-select" name="location">
+    <div class="search-form__location">
+        <select class="search-form__location-select" name="location">
             <option value="All areas" {{ request('location') == 'All areas' ? 'selected' : '' }}>All areas</option>
             @foreach ($locations as $location)
             <option value="{{ $location->id }}" {{ request('location') == $location->id ? 'selected' : '' }}>
@@ -17,8 +17,8 @@
             @endforeach
         </select>
     </div>
-    <div class="search__form__category">
-        <select class="search__form__category-select" name="category">
+    <div class="search-form__category">
+        <select class="search-form__category-select" name="category">
             <option value="All genres" {{ request('category') == 'All genres' ? 'selected' : '' }}>All genres</option>
             @foreach ($categories as $category)
             <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
@@ -27,9 +27,9 @@
             @endforeach
         </select>
     </div>
-    <span class="search__logo"></span><input class="search__form__keyword" type="text" name="keyword"
+    <span class="search-logo"></span><input class="search-form__keyword" type="text" name="keyword"
         placeholder="Search..." value="{{ request('keyword') }}">
-    <input class="search__form-btn" type="submit" value="検索">
+    <input class="search-form-btn" type="submit" value="検索">
 </form>
 @endsection
 
@@ -37,32 +37,32 @@
 <div class="shop">
     @if (isset($shopInfos))
     @foreach ($shopInfos as $shopInfo)
-    <div class="shop__group">
-        <img src="{{ $shopInfo->photo }}" alt="" class="shop__img">
-        <div class="shop__content">
-            <p class="shop__content-text">{{ $shopInfo->name }}</p>
-            <ul class="shop__content-detail">
-                <li class="shop__content-tag">#{{ $shopInfo->location->location }}</li>
-                <li class="shop__content-tag">#{{ $shopInfo->category->category }}</li>
+    <div class="shop-group">
+        <img src="{{ $shopInfo->photo }}" alt="" class="shop-img">
+        <div class="shop-content">
+            <p class="shop-content__text">{{ $shopInfo->name }}</p>
+            <ul class="shop-content__detail">
+                <li class="shop-content-tag">#{{ $shopInfo->location->location }}</li>
+                <li class="shop-content-tag">#{{ $shopInfo->category->category }}</li>
             </ul>
-            <ul class="shop__content-detail">
-                <li class="shop__content-tag">店舗評価点： @if (is_null($shopInfo->average_rating))
+            <ul class="shop-content__detail">
+                <li class="shop-content-tag">店舗評価点： @if (is_null($shopInfo->average_rating))
                     評価なし
                     @else
                     {{ number_format($shopInfo->average_rating, 1) }}
                     @endif
                 </li>
             </ul>
-            <div class="shop__group-form">
-                <a href="/detail/{{ $shopInfo->id }}" class="detail__btn">詳しくみる</a>
-                <form class="shop__group-btn" action="/shop/like" method="post">
+            <div class="shop-group-form">
+                <a href="/detail/{{ $shopInfo->id }}" class="detail-btn">詳しくみる</a>
+                <form class="shop-group-btn" action="/shop/like" method="post">
                     @csrf
                     @if ($shopInfo->liked)
-                    <button class="like__btn" type="submit" value="like" name="like"><span
-                            class="like__logo-red"></span></button>
+                    <button class="like-btn" type="submit" value="like" name="like"><span
+                            class="like-logo--red"></span></button>
                     @else
-                    <button class="like__btn" type="submit" value="like" name="like"><span
-                            class="like__logo"></span></button>
+                    <button class="like-btn" type="submit" value="like" name="like"><span
+                            class="like-logo"></span></button>
                     @endif
                     <input type="hidden" name="shop_id" value="{{ $shopInfo->id }}">
                 </form>

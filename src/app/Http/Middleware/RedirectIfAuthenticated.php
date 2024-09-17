@@ -2,11 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class RedirectIfAuthenticated
 {
@@ -25,16 +23,6 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                // // ユーザーの authority に応じてリダイレクト先を指定
-                // $user = Auth::user();
-                // if ($user->authority == 0) {
-                //     return redirect('/manager');
-                // } elseif ($user->authority == 1) {
-                //     return redirect('/owner');
-                // } else {
-                //     return redirect('/mypage');
-                // }
-                // return redirect(RouteServiceProvider::HOME);
             }
         }
 

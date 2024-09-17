@@ -16,6 +16,7 @@ class Reservation extends Model
         'people',
         'point',
         'comment',
+        'payment',
     ];
 
     protected $casts = [

@@ -39,11 +39,6 @@
     display: flex;
 }
 
-.register-form__label {
-    display: block;
-    margin-bottom: 8px;
-}
-
 .register-form__input {
     display: block;
     width: 100%;
@@ -58,7 +53,7 @@
     color: #FF9494;
 }
 
-.register-form__btn {
+.register-form-btn {
     width: 5vw;
     border-radius: 8px;
     background-color: rgb(33, 75, 224);
@@ -68,19 +63,6 @@
     border: none;
     display: block;
     margin-left: auto;
-}
-
-.register-form__nav {
-    text-align: center;
-}
-
-.register-form__nav-message {
-    margin: 0px;
-    color: #777;
-}
-
-.register-form__nav-link {
-    color: rgb(33, 75, 224);
 }
 
 .img-user {
@@ -106,7 +88,7 @@
         width: 70vw;
     }
 
-    .register-form__btn {
+    .register-form-btn {
         width: 10vw;
         font-size: 2.0vw;
     }

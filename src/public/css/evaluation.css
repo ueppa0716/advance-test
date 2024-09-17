@@ -22,18 +22,19 @@
     justify-content: space-between;
 }
 
-.review__label:first-of-type {
+.review-label:first-of-type {
     padding-left: 48px;
 }
 
-.review__label:last-of-type {
+.review-label:last-of-type {
     padding-right: 0px;
 }
 
-.review__label {
+.review-label {
     color: #000;
     text-align: left;
     font-weight: bold;
+    font-size: 1.2vw;
     width: 100%;
     gap: 24px;
     padding: 20px 8px;
@@ -47,4 +48,8 @@
     border: 1px solid #E0DFDE;
     color: #000;
     background-color: #fff;
+}
+
+@media (max-width: 768px) {
+
 }

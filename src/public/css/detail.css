@@ -1,27 +1,27 @@
-.detail__group {
+.detail-group {
     padding: 0 6%;
     display: flex;
     height: fit-content;
     width: 100%;
 }
 
-.detail__group-shop {
+.detail-group-shop {
     height: fit-content;
 }
 
-.detail__group-shop {
+.detail-group-shop {
     width: 50%;
     margin-right: 100px;
 }
 
-.detail__shop-heading {
+.detail-shop__heading {
     display: flex;
     vertical-align: middle;
     height: 40px;
     margin-bottom: 20px;
 }
 
-.detail__shop-btn {
+.detail-shop-btn {
     background-color: white;
     height: fit-content;
     width: fit-content;
@@ -30,40 +30,40 @@
     box-shadow: 2px 2px 1px gray;
 }
 
-.detail__shop-title {
+.detail-shop__title {
     margin: 0 0 0 10px;
     font-weight: bold;
     font-size: 25px;
 }
 
-.detail__shop-content {
+.detail-shop__content {
     width: 100%;
 }
 
-.detail__shop-comment {
+.detail-shop-comment {
     font-size: 10px;
     text-align: right;
     margin: 0;
 }
 
-.detail__shop-img {
+.detail-shop-img {
     width: 100%;
     height: 400px;
     object-fit: cover;
 }
 
-.detail__shop-detail {
+.detail-shop__detail {
     display: flex;
     margin: 20px 0;
     padding: 0;
 }
 
-.detail__shop-tag {
+.detail-shop-tag {
     margin-right: 15px;
     background-color: rgb(238, 238, 238);
 }
 
-.detail__group-reserve {
+.detail-group-reserve {
     width: 50%;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
@@ -73,25 +73,25 @@
     justify-content: space-between;
 }
 
-.detail__reserve-content {
+.detail-reserve__content {
     padding: 30px;
 }
 
-.detail__reserve-input {
+.detail-reserve-input {
     width: 90%;
     margin-bottom: 15px;
     display: block;
     font-size: 13px;
 }
 
-.detail__reserve-title {
+.detail-reserve__title {
     color: white;
     font-weight: bold;
     font-size: 20px;
     margin: 0 0 20px 0;
 }
 
-.detail__reserve-table {
+.detail-reserve-table {
     background-color: rgb(77, 127, 255);
     color: white;
     text-align: left;
@@ -100,18 +100,18 @@
     padding: 20px;
 }
 
-.detail__reserve__error-message {
+.detail-reserve__error-message {
     display: flex;
     color: red;
     font-size: 13px;
     align-items: center;
 }
 
-.detail__reserve-label {
+.detail-reserve-label {
     margin-right: 15px;
 }
 
-.detail__reserve-btn {
+.detail-reserve-btn {
     background-color: rgb(33, 75, 224);
     border: none;
     color: white;
@@ -120,7 +120,7 @@
     border-radius: 0 0 8px 8px;
 }
 
-.detail__evaluation-btn {
+.detail-evaluation-btn {
     background-color: #cecece;
     color: blue;
     width: 100%;
@@ -131,48 +131,48 @@
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-    .detail__group {
+    .detail-group {
         flex-direction: column;
         padding: 0 3%;
         margin-bottom: 50px;
     }
 
-    .detail__group-shop,
-    .detail__group-reserve {
+    .detail-group-shop,
+    .detail-group-reserve {
         width: 100%;
         margin-right: 0;
     }
 
-    .detail__group-reserve {
+    .detail-group-reserve {
         margin-top: 20px;
     }
 
-    .detail__shop-heading {
+    .detail-shop__heading {
         justify-content: left;
     }
 
-    .detail__shop-title {
+    .detail-shop__title {
         font-size: 20px;
     }
 
-    .detail__reserve-input {
+    .detail-reserve-input {
         width: 100%;
     }
 
-    .detail__reserve-title {
+    .detail-reserve__title {
         font-size: 18px;
     }
 
-    .detail__reserve-table {
+    .detail-reserve-table {
         font-size: 12px;
         padding: 10px;
     }
 
-    .detail__reserve-btn {
+    .detail-reserve-btn {
         padding: 20px;
     }
 
-    .detail__evaluation-btn {
+    .detail-evaluation-btn {
     font-size: 2.0vw;
     }
 

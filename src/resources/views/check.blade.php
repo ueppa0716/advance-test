@@ -8,16 +8,16 @@
 <h1 class="reserve__heading">{{ $userShop->name }}の予約状況</h1>
 <table class="reserve__table">
     <tr class="reserve__row">
-        <th class="reserve__label">来店日時</th>
-        <th class="reserve__label">予約者名</th>
-        <th class="reserve__label">人数</th>
+        <th class="reserve-label">来店日時</th>
+        <th class="reserve-label">予約者名</th>
+        <th class="reserve-label">人数</th>
     </tr>
     @if(!$reserveLists->isEmpty())
     @foreach ($reserveLists as $reserveList)
     <tr class="reserve__row">
-        <th class="reserve__label">{{ $reserveList->date->format('Y/m/d H:i') }}</th>
-        <th class="reserve__label">{{ $reserveList->user->name }}</th>
-        <th class="reserve__label">{{ $reserveList->people }}</th>
+        <th class="reserve-label">{{ $reserveList->date->format('Y/m/d H:i') }}</th>
+        <th class="reserve-label">{{ $reserveList->user->name }}</th>
+        <th class="reserve-label">{{ $reserveList->people }}</th>
     </tr>
     @endforeach
     @endif

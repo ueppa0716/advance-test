@@ -1,27 +1,27 @@
-.confirm__group {
+.confirm-group {
     padding: 0 6%;
     display: flex;
     height: fit-content;
     width: 100%;
 }
 
-.confirm__group-shop {
+.confirm-group__shop {
     height: fit-content;
 }
 
-.confirm__group-shop {
+.confirm-group__shop {
     width: 50%;
     margin-right: 100px;
 }
 
-.confirm__shop-heading {
+.confirm-shop__heading {
     display: flex;
     vertical-align: middle;
     height: 40px;
     margin-bottom: 20px;
 }
 
-.confirm__shop-btn {
+.confirm-shop-btn {
     background-color: white;
     height: fit-content;
     width: fit-content;
@@ -30,40 +30,40 @@
     box-shadow: 2px 2px 1px gray;
 }
 
-.confirm__shop-title {
+.confirm-shop__title {
     margin: 0 0 0 10px;
     font-weight: bold;
     font-size: 25px;
 }
 
-.confirm__shop-content {
+.confirm-shop-content {
     width: 100%;
 }
 
-.confirm__shop-comment {
+.confirm-shop__comment {
     font-size: 10px;
     text-align: right;
     margin: 0;
 }
 
-.confirm__shop-img {
+.confirm-shop-img {
     width: 100%;
     height: 400px;
     object-fit: cover;
 }
 
-.confirm__shop-confirm {
+.confirm-shop__confirm {
     display: flex;
     margin: 20px 0;
     padding: 0;
 }
 
-.confirm__shop-tag {
+.confirm-shop-tag {
     margin-right: 15px;
     background-color: rgb(238, 238, 238);
 }
 
-.confirm__group-reserve {
+.confirm-group__reserve {
     width: 50%;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
@@ -73,26 +73,26 @@
     justify-content: flex-start;
 }
 
-.confirm__reserve-content {
+.confirm-reserve__content {
     padding: 30px;
     height: 80%;
 }
 
-.confirm__reserve-input {
+.confirm-reserve-input {
     width: 90%;
     margin-bottom: 15px;
     display: block;
     font-size: 13px;
 }
 
-.confirm__reserve-title {
+.confirm-reserve__title {
     color: white;
     font-weight: bold;
     font-size: 20px;
     margin: 0 0 20px 0;
 }
 
-.confirm__reserve-table {
+.confirm-reserve__table {
     background-color: rgb(77, 127, 255);
     color: white;
     text-align: left;
@@ -102,19 +102,19 @@
     width: 90%;
 }
 
-.confirm__reserve__error-message {
+.confirm-reserve__error-message {
     display: flex;
     color: red;
     font-size: 13px;
     align-items: center;
 }
 
-.confirm__reserve-label {
+.confirm-reserve-label {
     padding: 6px;
     width: 70px;
 }
 
-.confirm__reserve-btn {
+.confirm-reserve-btn {
     background-color: rgb(33, 75, 224);
     border: none;
     color: white;
@@ -124,7 +124,7 @@
     font-size: 13px;
 }
 
-.confirm__evaluation-btn {
+.confirm-evaluation-btn {
     background-color: #cecece;
     color: blue;
     width: 100%;
@@ -133,7 +133,7 @@
     font-size: 1.0vw;
 }
 
-.detail__btn {
+.detail-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,52 +148,52 @@
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-    .confirm__group {
+    .confirm-group {
         flex-direction: column;
         padding: 0 3%;
         margin-bottom: 50px;
     }
 
-    .confirm__group-shop,
-    .confirm__group-reserve {
+    .confirm-group__shop,
+    .confirm-group__reserve {
         width: 100%;
         margin-right: 0;
     }
 
-    .confirm__group-reserve {
+    .confirm-group__reserve {
         margin-top: 20px;
     }
 
-    .confirm__shop-heading {
+    .confirm-shop__heading {
         justify-content: left;
     }
 
-    .confirm__shop-title {
+    .confirm-shop__title {
         font-size: 20px;
     }
 
-    .confirm__reserve-input {
+    .confirm-reserve-input {
         width: 100%;
     }
 
-    .confirm__reserve-title {
+    .confirm-reserve__title {
         font-size: 18px;
     }
 
-    .confirm__reserve-table {
+    .confirm-reserve__table {
         font-size: 12px;
         padding: 10px;
     }
 
-    .confirm__reserve-btn {
+    .confirm-reserve-btn {
         padding: 20px;
     }
 
-    .detail__btn {
+    .detail-btn {
         padding: 20px;
 }
 
-    .confirm__evaluation-btn {
+    .confirm-evaluation-btn {
         font-size: 2.0vw;
     }
 

@@ -78,7 +78,7 @@
     color: #FF9494;
 }
 
-.owner-form__btn {
+.owner-form-btn {
     width: 5vw;
     border-radius: 8px;
     background-color: rgb(33, 75, 224);
@@ -126,7 +126,7 @@
         width: 70vw;
     }
 
-    .owner-form__btn {
+    .owner-form-btn {
         width: 10vw;
         font-size: 2.0vw;
     }

@@ -35,12 +35,12 @@
     display: flex;
 }
 
-.mail-form__label {
+.mail-form-label {
     display: block;
     margin-bottom: 8px;
 }
 
-.mail-form__label {
+.mail-form-label {
     display: block;
     width: 20%;
     height: 35px;
@@ -60,7 +60,7 @@
     border-bottom: 1px solid black;
 }
 
-.mail-form__btn {
+.mail-form-btn {
     width: 5vw;
     border-radius: 8px;
     background-color: rgb(33, 75, 224);
@@ -119,7 +119,7 @@
         width: 70vw;
     }
 
-    .mail-form__btn {
+    .mail-form-btn {
         width: 10vw;
         font-size: 2.0vw;
     }

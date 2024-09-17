@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\Reservation;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
+use Carbon\Carbon;
 
 class ChargeController extends Controller
 {
-    public function stripe(Request $request)
-    {
-        $user = Auth::user();
-        return view('pay', compact('user'));
-    }
-
-    /*単発決済用のコード*/
     public function pay(Request $request)
     {
+        $now = Carbon::now();
+        $reserveList = Reservation::where('id', $request->reservation_id)->first();
+        $reserveList->update([
+            'payment' => $now,
+        ]);
+
         try {
             Stripe::setApiKey(env('STRIPE_SECRET'));
 

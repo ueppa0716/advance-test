@@ -34,7 +34,7 @@
                 <input class="manager-form__input" type="password" name="password" id="password"
                     placeholder="Password">
             </div>
-            <input class="manager-form__btn btn" type="submit" value="登録" name="owner">
+            <input class="manager-form-btn" type="submit" value="登録" name="owner">
             <input type="hidden" name="authority" value="2">
         </form>
     </div>

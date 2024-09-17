@@ -16,15 +16,15 @@
         <form class="" action="/mail/send" method="post">
             @csrf
             <div class="mail-form__group">
-                <label class="mail-form__label" for="subject">件名:</label>
+                <label class="mail-form-label" for="subject">件名:</label>
                 <input class="mail-form__input" type="mail" name="subject" id="subject" placeholder="subject"
                     value="{{ old('subject') }}" />
             </div>
             <div class="mail-form__group">
-                <label class="mail-form__label" for="message">メッセージ:</label>
+                <label class="mail-form-label" for="message">メッセージ:</label>
                 <textarea class="mail-form__input" rows="5" name="content" id="content" placeholder="message"></textarea>
             </div>
-            <input class="mail-form__btn btn" type="submit" value="送信">
+            <input class="mail-form-btn" type="submit" value="送信">
         </form>
     </div>
     <p class="mail-form__error-message">

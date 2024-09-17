@@ -21,6 +21,7 @@ class CreateReservationsTable extends Migration
             $table->integer('people');
             $table->integer('point')->nullable();
             $table->string('comment')->nullable();
+            $table->dateTime('payment')->nullable();
             $table->timestamps();
         });
     }

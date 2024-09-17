@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MiddlewareController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
@@ -64,7 +62,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/update', [OwnerController::class, 'info']);
     Route::post('/update/shop', [OwnerController::class, 'updateShop']);
     Route::get('/check', [OwnerController::class, 'check']);
-    Route::get('/charge', [ChargeController::class, 'stripe']);
     Route::post('/charge', [ChargeController::class, 'pay']);
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能

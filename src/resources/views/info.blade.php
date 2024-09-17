@@ -5,39 +5,24 @@
 @endsection
 
 @section('content')
-<div class="detail__group">
-    <div class="detail__group-shop">
+<div class="detail-group">
+    <div class="detail-group__shop">
         <div class="detail__shop-heading">
             <span class="detail__shop-btn"><a class="" href="/owner">&lt</a></span>
             <p class="detail__shop-title">{{ $userShop->name }}</p>
         </div>
-        <div class="detail__shop-content">
+        <div class="detail__shop__content">
             <a href="{{ $userShop->photo }}" download="photo.jpg">
                 <img src="{{ $userShop->photo }}" alt="Shop Photo" class="detail__shop-img">
             </a>
-            <ul class="detail__shop-detail">
+            <ul class="detail__shop__detail">
                 <li class="detail__shop-tag">#{{ $userShop->location->location }}</li>
                 <li class="detail__shop-tag">#{{ $userShop->category->category }}</li>
             </ul>
-            <ul class="detail__shop-detail">
-                <li class="detail__shop-tag">店舗評価点： @if (is_null($userShop->average_rating))
-                    評価なし
-                    @else
-                    {{ number_format($userShop->average_rating, 1) }}
-                    @endif
-                </li>
-                <li class="detail__shop-tag">
-                    <form class="detail__group-evaluation" method="get" action="/evaluation">
-                        @csrf
-                        <input class="detail__evaluation-btn" type="submit" value="口コミ確認はこちらから" name="reserve">
-                        <input type="hidden" name="shop_id" value="{{ $userShop->id }}">
-                    </form>
-                </li>
-            </ul>
-            <p class="detail__shop-txt">{{ $userShop->detail }}</p>
+            <p class="detail__shop__text">{{ $userShop->detail }}</p>
         </div>
     </div>
-    <form class="detail__group-update" method="post" action="/update/shop" enctype="multipart/form-data">
+    <form class="detail-group__update" method="post" action="/update/shop" enctype="multipart/form-data">
         @csrf
         <div class="detail__update-content">
             <p class="detail__update-title">店舗情報更新</p>

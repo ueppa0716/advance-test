@@ -5,20 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReserveRequest;
-use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\ShopRequest;
-use App\Models\User;
-use App\Models\Shop;
 use App\Models\Reservation;
-use App\Models\Location;
-use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use App\Mail\NotificationEmail;
-use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -76,7 +66,7 @@ class UserController extends Controller
 
         if ($request) {
             $reserveList = Reservation::where('user_id', $user->id)
-                ->where('shop_id', $request->shop_id)
+                ->where('id', $request->reservation_id)
                 ->first();
             if (!empty($reserveList->point)) {
                 $reserveList->update([

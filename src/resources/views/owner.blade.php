@@ -55,7 +55,7 @@
                     <label for="photo">写真を選択:</label>
                     <input type="file" id="photo" name="photo" accept="image/*">
                 </div>
-                <input class="owner-form__btn btn" type="submit" value="登録" name="shop">
+                <input class="owner-form-btn" type="submit" value="登録" name="shop">
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
             </form>
             @endif

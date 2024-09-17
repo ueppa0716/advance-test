@@ -22,18 +22,19 @@
     justify-content: space-between;
 }
 
-.reserve__label:first-of-type {
+.reserve-label:first-of-type {
     padding-left: 48px;
 }
 
-.reserve__label:last-of-type {
+.reserve-label:last-of-type {
     padding-right: 0px;
 }
 
-.reserve__label {
+.reserve-label {
     color: #000;
     text-align: left;
     font-weight: bold;
+    font-size: 1.2vw;
     width: 100%;
     gap: 24px;
     padding: 20px 8px;
@@ -47,4 +48,8 @@
     border: 1px solid #E0DFDE;
     color: #000;
     background-color: #fff;
+}
+
+@media (max-width: 768px) {
+
 }

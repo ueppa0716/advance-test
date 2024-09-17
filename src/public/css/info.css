@@ -1,4 +1,4 @@
-.detail__group {
+.detail-group {
     padding: 0 6%;
     display: flex;
     height: fit-content;
@@ -6,11 +6,7 @@
     margin-bottom: 50px;
 }
 
-.detail__group-shop {
-    height: fit-content;
-}
-
-.detail__group-shop {
+.detail-group__shop {
     width: 50%;
     height: auto;
     margin-right: 100px;
@@ -38,7 +34,7 @@
     font-size: 25px;
 }
 
-.detail__shop-content {
+.detail__shop__content {
     width: 100%;
 }
 
@@ -56,7 +52,7 @@
     object-fit: cover;
 }
 
-.detail__shop-detail {
+.detail__shop__detail {
     display: flex;
     margin: 20px 0;
     padding: 0;
@@ -67,7 +63,7 @@
     background-color: rgb(238, 238, 238);
 }
 
-.detail__group-update {
+.detail-group__update {
     width: 50%;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
@@ -134,19 +130,19 @@
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-    .detail__group {
+    .detail-group {
         flex-direction: column;
         padding: 0 3%;
         margin-bottom: 50px;
     }
 
-    .detail__group-shop,
-    .detail__group-update {
+    .detail-group__shop,
+    .detail-group__update {
         width: 100%;
         margin-right: 0;
     }
 
-    .detail__group-update {
+    .detail-group__update {
         margin-top: 20px;
     }
 
