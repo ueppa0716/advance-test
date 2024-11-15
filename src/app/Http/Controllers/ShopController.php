@@ -8,9 +8,12 @@ use App\Models\Shop;
 use App\Models\Reservation;
 use App\Models\Location;
 use App\Models\Category;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
+
 
 class ShopController extends Controller
 {
@@ -32,7 +35,8 @@ class ShopController extends Controller
         $shopInfos = $query->with(['location', 'category'])->get();
 
         // 店舗ごとの評価点の平均を計算
-        $shopRatings = Reservation::select('shop_id', DB::raw('AVG(point) as average_rating'))
+        $shopRatings = Feedback::where('status', '<>', 0)
+            ->select('shop_id', DB::raw('AVG(point) as average_rating'))
             ->groupBy('shop_id')
             ->pluck('average_rating', 'shop_id');
 
@@ -46,6 +50,28 @@ class ShopController extends Controller
             $shopInfo->liked = $userLikes->contains('shop_id', $shopInfo->id);
             $shopInfo->average_rating = $shopRatings->get($shopInfo->id); // 評価点の平均を設定、nullのままにする
         });
+
+        // Pro入会テストにて追加
+        if ($request->has('position')) {
+            switch ($request->position) {
+                case 'random':
+                    // ランダム順に並べ替え
+                    $shopInfos = $shopInfos->shuffle();
+                    break;
+                case 'higher':
+                    // 評価が高い順に並べ替え
+                    $shopInfos = $shopInfos->sortByDesc(function ($shopInfo) {
+                        return $shopInfo->average_rating ?? PHP_INT_MIN; // 評価がない場合は最下位扱い
+                    });
+                    break;
+                case 'lower':
+                    // 評価が低い順に並べ替え
+                    $shopInfos = $shopInfos->sortBy(function ($shopInfo) {
+                        return $shopInfo->average_rating ?? PHP_INT_MAX; // 評価がない場合は最下位扱い
+                    });
+                    break;
+            }
+        }
 
         return view('shop', compact('user', 'shopInfos', 'locations', 'categories'));
     }
@@ -83,14 +109,30 @@ class ShopController extends Controller
         $shopInfo = Shop::find($shop_id);
 
         // 店舗ごとの評価点の平均を計算
-        $shopRating = Reservation::where('shop_id', $shop_id)
+        $shopRating = Feedback::where('shop_id', $shop_id)
+            ->where('status', '<>', 0)
             ->avg('point');
 
         // 評価点の平均を`shopInfo`に追加
         $shopInfo->average_rating = $shopRating;
 
-        return view('detail', compact('user', 'shopInfo', 'now'));
+        // Pro入会テストにて追加
+        $feedbackInfos = Feedback::where('shop_id', $shop_id)
+            ->where('status', 1)
+            ->get();
+
+        if (!empty($user)) {
+            $feedbackExists = Feedback::where('shop_id', $shop_id)
+                ->where('user_id', $user->id)
+                ->where('status', '!=', 0)
+                ->exists();
+        } else {
+            $feedbackExists = collect();
+        }
+
+        return view('detail', compact('user', 'shopInfo', 'feedbackInfos', 'feedbackExists', 'now'));
     }
+
 
     public function evaluation($shop_id)
     {

@@ -54,4 +54,44 @@
         @enderror
     </p>
 </div>
+<!-- Pro入会テストにて追加 -->
+<div class="csvInport-form">
+    <h2 class="manager-form__heading">新規店舗追加</h2>
+    <div class="manager-form__inner">
+        <form class="manager-form__form" action="/manager/csv" method="post" enctype="multipart/form-data">
+            @csrf
+            <input class="manager-form__input" type="file" name="csvFile" id="csvFile">
+            <input class="manager-form-btn" type="submit" value="登録" name="owner">
+        </form>
+        @if ($errors->any())
+        <div class="error-message">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li class="error-message__text">・{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        @if (session('validationErrors'))
+        <div class="error-message">
+            <ul>
+                @foreach (session('validationErrors') as $error)
+                <li>
+                    <ul>
+                        @foreach ($error['errors'] as $msg)
+                        <li class="error-message__text">・{{ $msg }}</li>
+                        @endforeach
+                    </ul>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <p class="success-message__text">
+            @if (session('message'))
+            {{ session('message') }}
+            @endif
+        </p>
+    </div>
+</div>
 @endsection('content')

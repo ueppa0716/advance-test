@@ -21,7 +21,7 @@
     margin: 50px auto;
     background-color: #FFF;
     width: 30vw;
-    height: 280px;
+    height: auto;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
 }
@@ -125,5 +125,31 @@
     .manager-form-btn {
         width: 10vw;
         font-size: 2.0vw;
+    }
+}
+
+/* Pro入会テストにて追加 */
+.csvInport-form {
+    margin: 50px auto;
+    background-color: #FFF;
+    width: 30vw;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px gray;
+}
+
+.error-message__text {
+    color: red;
+    margin: 0;
+}
+
+.success-message__text {
+    color: blue;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .csvInport-form {
+        width: 70vw;
     }
 }

@@ -5,6 +5,19 @@
 @endsection
 
 @section('header')
+<form class="search-form__sort" action="/" method="get">
+    @csrf
+    <div class="search-form__position">
+        <p class="search-form__position__text">並び替え：</p>
+        <select class="search-form__position-select" name="position">
+            <option value="select">選択する</option>
+            <option value="random">ランダム</option>
+            <option value="higher">評価が高い順</option>
+            <option value="lower">評価が低い順</option>
+        </select>
+    </div>
+    <input class="search-form-btn" type="submit" value="ソート">
+</form>
 <form class="search-form" action="/" method="get">
     @csrf
     <div class="search-form__location">

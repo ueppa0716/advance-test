@@ -63,6 +63,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/update/shop', [OwnerController::class, 'updateShop']);
     Route::get('/check', [OwnerController::class, 'check']);
     Route::post('/charge', [ChargeController::class, 'pay']);
+
+    // Pro入会テストにて追加
+    Route::get('/feedback/{shop_id}', [UserController::class, 'feedback']);
+    Route::post('/feedback/send/{shop_id}', [UserController::class, 'send']);
+    Route::post('/feedback/update/{shop_id}', [UserController::class, 'update']);
+    Route::post('/manager/csv', [ManagerController::class, 'csv']);
+
     Route::get('/profile', function () {
         // 確認済みのユーザーのみがこのルートにアクセス可能
     });

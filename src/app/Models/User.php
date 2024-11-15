@@ -67,8 +67,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function averageRating()
     {
-        return $this->hasOne(Reservation::class)
+        // Pro入会テストにて削除
+        // return $this->hasOne(Reservation::class)
+        //     ->selectRaw('shop_id, AVG(point) as average_rating')
+        //     ->groupBy('shop_id');
+
+        return $this->hasOne(Feedback::class)
             ->selectRaw('shop_id, AVG(point) as average_rating')
+            ->where('status', '<>', 0)
             ->groupBy('shop_id');
+    }
+
+
+
+    // Pro入会テストにて追加 
+    public function feedback()
+    {
+        return $this->hasMany(Like::class);
     }
 }

@@ -20,25 +20,23 @@
                 <nav class="menu__link-nav">
                     <ul class="menu__link-ul">
                         <li class="menu__link-li"><a class="menu__link-text" href="/">Home</a></li>
-                        @if (isset($user))
-                        @if ($user->authority == 0)
+                        @if (Auth::check())
+                        @if (Auth::user()->authority == 0)
                         <li class="menu__link-li"><a class="menu__link-text" href="/manager">Manager</a></li>
                         <li class="menu__link-li"><a class="menu__link-text" href="/mail">Mail</a></li>
                         @endif
-                        @if ($user->authority == 1)
+                        @if (Auth::user()->authority == 1)
                         <li class="menu__link-li"><a class="menu__link-text" href="/owner">Owner</a></li>
                         @endif
+                        @if (Auth::user()->authority == 2)
+                        <li class="menu__link-li"><a class="menu__link-text" href="/mypage">Mypage</a></li>
                         @endif
-                        @if (Auth::check())
                         <li class="menu__link-li">
                             <form action="/logout" method="post">
                                 @csrf
                                 <button type="submit" class="menu__link-btn">Logout</button>
                             </form>
                         </li>
-                        @if ($user->authority == 2)
-                        <li class="menu__link-li"><a class="menu__link-text" href="/mypage">Mypage</a></li>
-                        @endif
                         @else
                         <li class="menu__link-li"><a class="menu__link-text" href="/register">Registration</a></li>
                         <li class="menu__link-li"><a class="menu__link-text" href="/login">Login</a></li>

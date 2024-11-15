@@ -65,6 +65,7 @@
 
 .confirm-group__reserve {
     width: 50%;
+    height: 600px;
     border-radius: 8px;
     box-shadow: 2px 2px 1px gray;
     background-color: rgb(48, 93, 255);

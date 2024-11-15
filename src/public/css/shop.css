@@ -286,3 +286,50 @@ select {
         white-space: nowrap;
     }
 }
+
+/* Pro入会テストにて追加 */
+.search-form__sort {
+    display: flex;
+    grid-column: 2 / 3;
+    justify-self: right;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px gray;
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+}
+
+.search-form__position {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.search-form__position::after {
+    position: absolute;
+    top: 60%;
+    right: 1.5vw;
+    width: 0;
+    height: 0;
+    border-top: 12px solid #BEB1A6;
+    border-right: 0.5vw solid transparent;
+    border-left: 0.5vw solid transparent;
+    content: "";
+    transform: translateY(-50%);
+}
+
+.search-form__position__text {
+    font-size: 1.0vw;
+    width: 40%;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form__position-select {
+    font-size: 1.0vw;
+    width: 50%;
+}

@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\Shop;
 use Illuminate\Http\Request;
+use App\Http\Requests\FeedbackRequest;
 use App\Http\Requests\ReserveRequest;
 use App\Models\Reservation;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -82,5 +86,87 @@ class UserController extends Controller
                 return redirect()->back()->with('message', 'レビューありがとうございます。');
             }
         }
+    }
+
+
+
+    // Pro入会テストにて追加
+    public function feedback($shop_id)
+    {
+        $user = Auth::user();
+        $now = Carbon::now();
+
+        $shopInfo = Shop::find($shop_id);
+
+        // 店舗ごとの評価点の平均を計算
+        $shopRating = Feedback::where('shop_id', $shop_id)
+            ->where('status', '<>', 0)
+            ->avg('point');
+
+        // 評価点の平均を`shopInfo`に追加
+        $shopInfo->average_rating = $shopRating;
+
+        return view('feedback', compact('user', 'shopInfo', 'now'));
+    }
+
+    public function send(FeedbackRequest $request, $shop_id)
+    {
+        $user = Auth::user();
+        $shopInfo = Shop::find($shop_id);
+        if (Feedback::where('shop_id', $request->shop_id)
+            ->where('status', 1)
+            ->where('user_id', $user->id)
+            ->first()
+        ) {
+            return redirect()->back()->with('message', 'すでに口コミ投稿済です');
+        };
+
+        // 画像ファイルを取得
+        $file = $request->file('photo');
+
+        if ($file) {
+            // ファイル名を生成
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+
+            // ストレージに保存
+            $path = $file->storeAs('images', $filename, 'public');
+
+            // 保存先のURLを取得
+            $url = Storage::url($path);
+        } else {
+            $url = null; // 画像がアップロードされていない場合の処理
+        }
+        Feedback::create([
+            'user_id' => $user->id,
+            'shop_id' => $request->shop_id,
+            'comment' => $request->comment,
+            'point' => $request->point,
+            'photo' => $url, // 画像のURLを保存
+            'status' => 1,
+        ]);
+        return redirect('/detail/' . $shopInfo->id);
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($request->has('update')) {
+            Feedback::where('id', $request->feedback_id)
+                ->update([
+                    'comment' => $request->comment,
+                    'point' => $request->point,
+                ]);
+        }
+
+        if ($request->has('delete')) {
+            Feedback::where('id', $request->feedback_id)
+                ->update([
+                    'status' => 0,
+                ]);
+            return redirect()->back();
+        }
+
+        return redirect()->back();
     }
 }

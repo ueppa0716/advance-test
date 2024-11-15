@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\Reservation;
 use App\Models\Location;
 use App\Models\Category;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -63,7 +64,7 @@ class OwnerController extends Controller
         }
     }
 
-    public function info()
+    public function info($shop_id)
     {
         $user = Auth::user();
         $locations = Location::all();
@@ -71,7 +72,8 @@ class OwnerController extends Controller
         $userShop = Shop::where('user_id', $user->id)->first();
 
         // 店舗ごとの評価点の平均を計算
-        $shopRating = Reservation::where('shop_id', $userShop->id)
+        $shopRating = Feedback::where('shop_id', $shop_id)
+            ->where('status', '<>', 0)
             ->avg('point');
 
         // 評価点の平均を`shopInfo`に追加

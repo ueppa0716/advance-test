@@ -33,5 +33,13 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => $now,
         ]);
+
+        User::create([
+            'name' => "テスト太郎",
+            'email' => "test@gmail.com",
+            'authority' => 2,
+            'password' => Hash::make('password'),
+            'email_verified_at' => $now,
+        ]);
     }
 }

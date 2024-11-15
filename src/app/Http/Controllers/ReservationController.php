@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReserveRequest;
 use App\Models\Shop;
 use App\Models\Reservation;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -21,7 +22,8 @@ class ReservationController extends Controller
         $shopInfo = Shop::find($shop_id);
 
         // 店舗ごとの評価点の平均を計算
-        $shopRating = Reservation::where('shop_id', $shop_id)
+        $shopRating = Feedback::where('shop_id', $shop_id)
+            ->where('status', '<>', 0)
             ->avg('point');
 
         // 評価点の平均を`shopInfo`に追加
